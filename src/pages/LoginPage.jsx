@@ -1,0 +1,96 @@
+import { Link } from "react-router-dom";
+import GoogleLogo from "../assets/images/GoogleLogo";
+import FacebookLogo from "../assets/images/FacebookLogo";
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
+import axios from "axios";
+
+function LoginPage() {
+  // const googleAuth = () => {
+  //   window.open(
+  //     `https://rental-8yem.onrender.com/auth/google/callback`,
+  //     "_self"
+  //   );
+  // };
+
+  const signInWithGoogle = async (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        axios
+          .post(`${API_URL}/auth/google`, {
+            full_name: result.user.displayName,
+            email: result.user.email,
+            profile_picture: result.user.photoURL,
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      })
+      .catch((error) => {});
+  };
+
+  return (
+    <div className="log-box w-[450px] border h-[100%] border-gray-500 relative mx-auto my-[5rem] p-6 grow flex flex-col items-center">
+      <h2 className="text-4xl text-center">Login</h2>
+      <form className="flex flex-col w-full">
+        <label htmlFor="email" className="flex flex-col">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className=" outline-none"
+          />
+        </label>
+        <label htmlFor="password" className="flex flex-col">
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            className=" outline-none"
+          />
+        </label>
+
+        <button
+          type="submit"
+          className="w-full mt-4 bg-primary_pink text-white py-2 px-3 border rounded-md"
+        >
+          Log in
+        </button>
+
+        <div className="flex justify-between items-center mt-6">
+          <Link className="text-sm text-gray-500">Forgot password?</Link>
+          <span className="text-sm text-gray-500">
+            Don&#39;t have an account?{" "}
+            <Link
+              to={"/register"}
+              className="font-bold underline underline-offset-1"
+            >
+              Sign up
+            </Link>
+          </span>
+        </div>
+
+        <div className="mt-6">
+          <button
+            className="w-full flex justify-center items-center gap-3 mt-4 border-slate-600 text-slate-600 py-2 px-3 border rounded-md"
+            onClick={signInWithGoogle}
+          >
+            <GoogleLogo />
+            <span>Log in with Google</span>
+          </button>
+
+          {/* <button
+            type="submit"
+            className="w-full  flex justify-center items-center gap-3 mt-4 border-slate-600 text-slate-600 py-2 px-3 border rounded-md"
+          >
+            <FacebookLogo />
+            <span>Log in with Facebook</span>
+          </button> */}
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default LoginPage;

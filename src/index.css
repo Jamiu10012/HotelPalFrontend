@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* overflow-x: hidden; */
+}
+input[type="email"],
+input[type="password"] {
+  @apply w-full border my-4 py-2 px-3 text-[18px] rounded-md;
+}
+ul,
+li,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.main-hero {
+  overflow: hidden !important;
+}
+video {
+  object-fit: fill;
+}
+.appl {
+  overflow-x: hidden;
+}
+
+:root {
+  /* --background-main-color: #f6e9e9; */
+  --primary: #5f4c76;
+  /* --primary-deep: #f06292; */
+}

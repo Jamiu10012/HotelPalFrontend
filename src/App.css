@@ -1,0 +1,50 @@
+.cls-bx {
+  display: none;
+}
+@media only screen and (max-width: 1000px) {
+  .nav-ul {
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    right: 100%;
+    background: #fe598d;
+    color: #fff;
+    font-size: 20px;
+    min-height: 190vh !important;
+    z-index: 123;
+    display: flex;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    width: 50% !important;
+    padding: 30px;
+    padding-top: 40px;
+    gap: 25px;
+  }
+  .nav-ac {
+    right: 0;
+  }
+  .cls-bx {
+    position: absolute;
+    right: 20px;
+    top: 1%;
+    font-size: 30px;
+    cursor: pointer;
+    display: initial;
+  }
+  .log-box {
+    width: 90% !important;
+  }
+}
+
+.not {
+  bottom: 0;
+}
+.contact-inp {
+  border: 1px solid #fff !important;
+  border-radius: 8px;
+  font-size: 14px !important;
+  margin-top: 10px;
+}
+.contact-inp::placeholder {
+  color: #5d4d4d;
+}

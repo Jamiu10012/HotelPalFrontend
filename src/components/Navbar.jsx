@@ -1,0 +1,85 @@
+import { Link } from "react-router-dom";
+import "../App.css";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useState } from "react";
+
+function Navbar() {
+  const [isMenu, setIsMenu] = useState(false);
+
+  const handleIsMenuOpen = () => {
+    setIsMenu(true);
+  };
+  const handleIsMenuClose = () => {
+    setIsMenu(false);
+  };
+  return (
+    <header className="min-h-[57px] w-full bg-white border-b sticky top-0 flex justify-between items-center p-2 z-50">
+      <nav className="w-[90%] m-auto flex justify-between items-center">
+        <Link to={"/"} className="logo flex items-center">
+          <img src="/images/EzClickLogo1.png" className="w-[150px]" />
+        </Link>
+
+        <ul
+          className={`nav-ul w-1/3 flex justify-around items-center  ${
+            isMenu ? "nav-ac" : ""
+          }`}
+        >
+          <div className="cls-bx " onClick={handleIsMenuClose}>
+            <IoIosCloseCircleOutline />
+          </div>
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/properties"}>Properties</Link>
+          </li>
+          <li>
+            <Link to={"/listp"}>List a place</Link>
+          </li>
+          <li>
+            <Link to={"/contact"}>Contact</Link>
+          </li>
+          <li>
+            <Link to={"/all-blog"}>Blog</Link>
+          </li>
+        </ul>
+        {/* <MenuModal /> */}
+        <div className="flex items-center gap-2 border rounded-full py-2 px-4 border-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6 cursor-pointer"
+            onClick={handleIsMenuOpen}
+          >
+            <path
+              fillRule="evenodd"
+              d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+              clipRule="evenodd"
+            />
+          </svg>
+
+          <Link
+            to={"/login"}
+            className="bg-primary_pink text-white rounded-full border border-primary_pink"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                fillRule="evenodd"
+                d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+        </div>
+      </nav>
+    </header>
+  );
+}
+
+export default Navbar;
