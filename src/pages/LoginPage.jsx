@@ -4,14 +4,33 @@ import FacebookLogo from "../assets/images/FacebookLogo";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
+import { loginUser } from "../../Apis/Auth";
 
 function LoginPage() {
-  // const googleAuth = () => {
-  //   window.open(
-  //     `https://rental-8yem.onrender.com/auth/google/callback`,
-  //     "_self"
-  //   );
-  // };
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const result = await loginUser(formData);
+      toast.success(result.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   const signInWithGoogle = async (e) => {
     e.preventDefault();
@@ -33,13 +52,15 @@ function LoginPage() {
   return (
     <div className="log-box w-[450px] border h-[100%] border-gray-500 relative mx-auto my-[5rem] p-6 grow flex flex-col items-center">
       <h2 className="text-4xl text-center">Login</h2>
-      <form className="flex flex-col w-full">
+      <form className="flex flex-col w-full" onSubmit={handleFormSubmit}>
         <label htmlFor="email" className="flex flex-col">
           <input
             type="email"
             name="email"
             placeholder="Email"
             className=" outline-none"
+            value={formData.email}
+            onChange={handleInputChange}
           />
         </label>
         <label htmlFor="password" className="flex flex-col">
@@ -48,6 +69,8 @@ function LoginPage() {
             name="password"
             placeholder="password"
             className=" outline-none"
+            value={formData.password}
+            onChange={handleInputChange}
           />
         </label>
 
@@ -57,6 +80,7 @@ function LoginPage() {
         >
           Log in
         </button>
+        <ToastContainer />
 
         <div className="flex justify-between items-center mt-6">
           <Link className="text-sm text-gray-500">Forgot password?</Link>
