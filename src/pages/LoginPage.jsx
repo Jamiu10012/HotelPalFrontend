@@ -7,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import { loginUser } from "../../Apis/Auth";
+import { API_URL } from "../../ProtectedRoute";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -26,7 +27,13 @@ function LoginPage() {
 
     try {
       const result = await loginUser(formData);
-      toast.success(result.message);
+      console.log(result.token);
+      localStorage.setItem("authToken", result.token);
+      toast.success("Login Successfully!!!");
+      const timeoutId = setTimeout(() => {
+        window.location.href = "/";
+      }, 3500);
+      return () => clearTimeout(timeoutId);
     } catch (error) {
       toast.error(error.message);
     }
@@ -46,7 +53,9 @@ function LoginPage() {
             console.log(res);
           });
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

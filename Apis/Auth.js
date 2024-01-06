@@ -47,7 +47,7 @@ export const loginUser = async (userData, successMessage, errorMessage) => {
     toast.success(successMessage);
     return data;
   } catch (error) {
-    console.error("Error registering user:", error);
+    console.error("Error logins user:", error);
     toast.error(error);
     // toast.error("", error);
     throw error;

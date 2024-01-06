@@ -50,11 +50,9 @@ function SignupPage() {
     }
 
     if (formData.password !== formData.confirmPassword) {
-      if (formData.confirmPassword.trim() !== "") {
-        toast.error("Password does not match");
+      toast.error("Password does not match");
 
-        return;
-      }
+      return;
     }
 
     try {

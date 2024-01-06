@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import EditProfile from "./pages/editProfile";
 import VerifySucc from "./pages/verifySucc";
+import ResetPassword from "./pages/ResetPassword";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +48,7 @@ function App() {
         <Route index path={"/blog-det"} element={<BlogDetail />} />
         <Route index path={"/edit-das"} element={<EditProfile />} />
         <Route index path={"/user-verified"} element={<VerifySucc />} />
+        <Route index path={"/reset-passwrd"} element={<ResetPassword />} />
         {/* </Route> */}
       </Routes>
       <Footer />
