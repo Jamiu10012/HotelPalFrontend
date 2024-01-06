@@ -102,6 +102,10 @@ function SignupPage() {
             value={formData.password}
             onChange={handleInputChange}
           />
+          <span className="text-[10px] mt-[-10px] text-red-400">
+            * Password must be at least 8 characters and contain at least one
+            letter, one number, and one special character
+          </span>
         </label>
         <label htmlFor="confirmPassword" className="flex flex-col">
           <input
