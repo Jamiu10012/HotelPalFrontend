@@ -3,7 +3,7 @@ import very from "../assets/images/very.png";
 const VerifySucc = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/login";
     }, 3500);
     return () => clearTimeout(timeoutId);
   }, []); // Empty dependency array ensures this effect runs only once
