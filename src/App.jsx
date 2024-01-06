@@ -36,17 +36,17 @@ function App() {
       <Routes>
         {/* <Route element={<Layout />}> */}
         <Route index path={"/"} element={<HomePage />} />
-        <Route path={"/login"} element={<LoginPage />} />
-        <Route path={"/register"} element={<SignupPage />} />
-        <Route path={"/contact"} element={<ContactUs />} />
-        <Route path={"/properties"} element={<Properties />} />
-        <Route path={"/propdet"} element={<PropDetail />} />
-        <Route path={"/listp"} element={<ListProp />} />
-        <Route path={"/dash"} element={<Dashboard />} />
-        <Route path={"/all-blog"} element={<AllBlog />} />
-        <Route path={"/blog-det"} element={<BlogDetail />} />
-        <Route path={"/edit-das"} element={<EditProfile />} />
-        <Route path={"/user-verified"} element={<VerifySucc />} />
+        <Route index path={"/login"} element={<LoginPage />} />
+        <Route index path={"/register"} element={<SignupPage />} />
+        <Route index path={"/contact"} element={<ContactUs />} />
+        <Route index path={"/properties"} element={<Properties />} />
+        <Route index path={"/propdet"} element={<PropDetail />} />
+        <Route index path={"/listp"} element={<ListProp />} />
+        <Route index path={"/dash"} element={<Dashboard />} />
+        <Route index path={"/all-blog"} element={<AllBlog />} />
+        <Route index path={"/blog-det"} element={<BlogDetail />} />
+        <Route index path={"/edit-das"} element={<EditProfile />} />
+        <Route index path={"/user-verified"} element={<VerifySucc />} />
         {/* </Route> */}
       </Routes>
       <Footer />
