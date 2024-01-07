@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
-const PriceForm = ({ handlePriceClose, handleImageClick }) => {
+const PriceForm = ({
+  handlePriceClose,
+  handleImageClick,
+  formData,
+  handleInputChange,
+}) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,9 +26,9 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -42,9 +47,9 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -63,9 +68,9 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -85,9 +90,9 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -99,24 +104,29 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
           Amenities
         </li>
       </ol>
-      <form className=" my-5   w-full">
+      <div className=" my-5   w-full">
         <div className="title-desc text-[20px] font-bold text-gray-500">
           Price
         </div>
+        <p className=" text-red-500 mb-1">All field here are required</p>
+
         <div className="currency-box">
           <div className="relative z-0 inp-lab-container mb-5 group">
             <label
-              for=""
-              class=" block desc-input mb-2 text-sm font-medium text-gray-900 dark:text-white rad-bx"
+              htmlFor=""
+              className=" block desc-input mb-2 text-sm font-medium text-gray-900 dark:text-white rad-bx"
             >
               Select Category
             </label>
             <select
-              id=""
-              class=" bg-transparent border-2 border-gray-600  outline-none text-gray-900 text-sm  block desc-input w-[100px] p-2.5"
+              id="currency"
+              name="currency"
+              className=" bg-transparent border-2 border-gray-600  outline-none text-gray-900 text-sm  block desc-input w-[100px] p-2.5"
+              value={formData.currency}
+              onChange={handleInputChange}
             >
-              <option>USD $</option>
-              <option>NGN #</option>
+              <option value="$">USD $</option>
+              <option value="#">NGN #</option>
             </select>
           </div>
         </div>
@@ -124,99 +134,111 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="price_per_night_month"
+              id="price_per_night_month"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.price_per_night_month}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Price per night: in $
+              Price per month: in {formData.currency || "$"}
             </label>
           </div>
 
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="price_per_night_week"
+              id="price_per_night_week"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.price_per_night_week}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Price per night (30d+): in $
+              Price per weeek (30d+): in {formData.currency || "$"}
             </label>
           </div>
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="price_per_night"
+              id="price_per_night"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.price_per_night}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Price per night (7d+): in $
+              Price per night (7d+): in {formData.currency || "$"}
             </label>
           </div>
 
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="tax_fee"
+              id="tax_fee"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.tax_fee}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              City Tax Fee: in $
+              City Tax Fee: in {formData.currency || "$"}
             </label>
           </div>
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="cleaning_fee"
+              id="cleaning_fee"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.cleaning_fee}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Cleaning Fee: in $
+              Cleaning Fee: in {formData.currency || "$"}
             </label>
           </div>
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="extra_people"
+              id="extra_people"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.extra_people}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Extra People: $40/night: in $
+              Extra People: $40/night: in {formData.currency || "$"}
             </label>
           </div>
         </div>
@@ -236,7 +258,7 @@ const PriceForm = ({ handlePriceClose, handleImageClick }) => {
             Continue
           </button>
         </div>
-      </form>
+      </div>
     </>
   );
 };

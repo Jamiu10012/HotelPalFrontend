@@ -1,7 +1,7 @@
 // api.js
 import { useState } from "react";
 import { API_URL } from "../ProtectedRoute";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const registerUser = async (userData, successMessage) => {
@@ -47,7 +47,6 @@ export const loginUser = async (userData, successMessage) => {
     toast.success(successMessage);
     return data;
   } catch (error) {
-    console.error("Error logins user:", error);
     toast.error(error);
     // toast.error("", error);
     throw error;

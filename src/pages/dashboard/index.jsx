@@ -7,35 +7,58 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { IoSaveOutline } from "react-icons/io5";
 import Sidebar from "../../components/dashboardSidebar";
 import RecentActivity from "../../components/recentActivity";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../../Apis/getUser";
 
 const Dashboard = () => {
+  const [getData, setGetData] = useState(null);
+  const token = localStorage.getItem("authToken");
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserById(userId, token);
+        setGetData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
+
   return (
     <div className="edit-container py-20">
       <Sidebar />
       <div className="dashboard-main2-container">
         <div className="dashboard-main-head">
-          <img src={profile} alt="profile" />
+          <img src={getData?.user?.profile_picture || profile} alt="profile" />
           <div className="dash-details">
-            <h1 className="dasboard-name">
-              {"Jane"} {"Smith"}
-            </h1>
-            <h2 className="dashboard-job-title">{"Company Name"}</h2>
+            <h1 className="dasboard-name">{getData?.user?.full_name}</h1>
+            <h2 className="dashboard-job-title">{getData?.user?.username}</h2>
             <div className="dash-contact">
               <div className="dash-contact-mail-phone">
                 <IoMdMail className="dash-head-icon" />
-                <p className="mail-phone">{"contact_email"}</p>
+                <p className="mail-phone">{getData?.user?.email}</p>
               </div>
-              <div className="dash-contact-mail-phone ml-4">
-                <HiPhone className="dash-head-icon" />
-                <p className="mail-phone">{"contact_phone"}</p>
+              {getData?.user?.contact_phone && (
+                <div className="dash-contact-mail-phone ml-4">
+                  <HiPhone className="dash-head-icon" />
+                  <p className="mail-phone">{getData?.user?.contact_phone}</p>
+                </div>
+              )}
+            </div>
+            {getData?.user?.city && getData?.user?.nationality && (
+              <div className="dash-contact-mail-phone">
+                <MdOutlineLocationOn className="dash-head-icon" />
+                <p className="mail-phone">
+                  {getData?.user?.city}, {getData?.user?.nationality}
+                </p>
               </div>
-            </div>
-            <div className="dash-contact-mail-phone">
-              <MdOutlineLocationOn className="dash-head-icon" />
-              <p className="mail-phone">
-                {"city"} {"nationality"}
-              </p>
-            </div>
+            )}
           </div>
         </div>
         <div className="dashboard-second-section">

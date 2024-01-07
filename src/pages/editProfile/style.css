@@ -143,6 +143,7 @@
   font-size: 17px;
   outline: 0;
   border: 0;
+  border: 2px solid var(--primary);
 }
 
 .dashboard-form fieldset input:hover {
@@ -217,7 +218,7 @@
     margin: 10px;
   }
   .dashboard-form fieldset input {
-    width: 350px;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 410px) {

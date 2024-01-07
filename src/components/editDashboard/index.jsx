@@ -1,25 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import profile from "../../img/profile.jpg";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../../ProtectedRoute";
+import { getUserById } from "../../../Apis/getUser";
+import { ToastContainer, toast } from "react-toastify";
 
 function EditDashboard() {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [contact_phone, setPhone] = useState("");
-  const [job_title, setJobTitle] = useState("");
-  const [gender, setGender] = useState("");
-  const [date_of_birth, setDob] = useState("");
-  const [nationality, setNationality] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  // const [full_address, setAddress] = useState(jobSeeker?.full_address);
-  const [yearofExperience, setYOE] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [instagram, setInstagram] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [facebook, setFacebook] = useState("");
+  const [getData, setGetData] = useState(null);
+  const token = localStorage.getItem("authToken");
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserById(userId, token);
+        setGetData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
+
+  const [full_name, setFullName] = useState(getData?.user?.full_name);
+  const [contact_phone, setPhone] = useState(getData?.user?.contact_phone);
+  const [gender, setGender] = useState(getData?.user?.gender);
+  const [date_of_birth, setDob] = useState(getData?.user?.date_of_birth);
+  const [state, setState] = useState(getData?.user?.state);
+  const [city, setCity] = useState(getData?.user?.city);
+  const [username, setUsername] = useState(getData?.user?.username);
+  const [twitter, setTwitter] = useState(getData?.user?.twitter);
+  const [instagram, setInstagram] = useState(getData?.user?.instagram);
+  const [linkedin, setLinkedin] = useState(getData?.user?.linkedin);
+  const [facebook, setFacebook] = useState(getData?.user?.facebook);
   const [isLoading, setIsLoading] = useState(false);
-  // const [zipcode, setZipcode] = useState(jobSeeker?.zipcode);
+  const [nationality, setNationality] = useState(getData?.user?.nationality);
 
   const [file, setFile] = useState("");
   const [previewUrl, setPreviewUrl] = useState(profile);
@@ -59,88 +77,75 @@ function EditDashboard() {
   //   setPreviewUrl("");
   // };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   // const userId = localStorage.getItem("id");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  //   let formData = new FormData();
-  //   formData.append("file", file || jobSeeker?.profile_picture);
-  //   formData.append("upload_preset", "zwrcr9d7");
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "rgfgxgi0");
 
-  //   await axios({
-  //     method: "POST",
-  //     url: "https://api.cloudinary.com/v1_1/dhyk7zned/image/upload",
-  //     data: formData,
-  //   }).then((response) => {
-  //     setIsLoading(true);
-  //     axios(
-  //       // `http://localhost:8080/api/jobseekers/${jobSeekerId}`,
-  //       `https://app-b25f845d-8391-478d-b1b9-530681ce6233.cleverapps.io/api/jobseekers/${jobSeekerId}`,
-  //       {
-  //         method: "PUT", // or "PATCH" if your API supports partial updates
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         data: {
-  //           // full_name: {
-  //           //   firstname: full_name.firstname,
-  //           //   lastname: full_name.lastname,
-  //           // },
-  //           // location: {
-  //           //   full_address: location.full_address,
-  //           //   city: location.city,
-  //           //   zipcode: location.zipcode,
-  //           //   state: location.state,
-  //           // },
-  //           firstname,
-  //           lastname,
-  //           contact_phone,
-  //           // full_address,
-  //           yearofExperience,
-  //           city,
-  //           skills: skills,
-  //           state,
-  //           profile_picture: response.data.secure_url,
-  //           gender,
-  //           date_of_birth,
-  //           job_title,
-  //           nationality,
-  //           linkedin,
-  //           instagram,
-  //           facebook,
-  //           twitter,
+    // Upload image only if a file is provided
+    let imageUrl;
+    if (file) {
+      await axios({
+        method: "POST",
+        url: "https://api.cloudinary.com/v1_1/dyojshtoe/image/upload",
+        data: formData,
+      }).then((response) => {
+        imageUrl = response.data.secure_url;
+      });
+    }
 
-  //           // social_media: {
-  //           //   linkedin: social_media.linkedin,
-  //           //   instagram: social_media.instagram,
-  //           //   facebook: social_media.facebook,
-  //           //   twitter: social_media.twitter,
-  //           // },
-  //         },
-  //       }
-  //     )
-  //       .then((response) => response.data)
-  //       .then((updatedJobSeeker) => {
-  //         setIsLoading(false);
-  //         alert("Jobseeker Updated");
+    setIsLoading(true);
 
-  //         navigate("/seekerdashboard", { replace: true });
-  //         // console.log("Job seeker updated:", updatedJobSeeker);
-  //         // Do something with the updated job seeker data
-  //       })
-  //       .catch((error) => {
-  //         setIsLoading(false);
-  //         console.error("Error updating job seeker:", error);
-  //         alert("Something went wrong");
-  //       });
-  //   });
-  // };
+    const userData = {
+      full_name,
+      username,
+      contact_phone,
+      city,
+      state,
+      nationality,
+      gender,
+      date_of_birth,
+      linkedin,
+      instagram,
+      facebook,
+      twitter,
+    };
+
+    // Include profile_picture in the data object only if imageUrl is defined
+    if (imageUrl) {
+      userData.profile_picture = imageUrl;
+    }
+
+    axios(`${API_URL}/user/update/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      data: userData,
+    })
+      .then((response) => {
+        setIsLoading(false);
+        // console.log("User updated successfully:", response.data);
+        toast.success("User updated successfully!!!");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        // console.error("Error updating user:", error);
+        toast.error(error);
+      });
+  };
 
   return (
     <div className="profile-main-container bord-pro ">
-      <form action="" className="dashboard-form">
+      <form action="" className="dashboard-form" onSubmit={handleSubmit}>
         <div className="dashboard-img">
-          <img src={previewUrl} alt="profile" />
+          <img
+            src={getData?.user?.profile_picture || previewUrl}
+            alt="profile"
+          />
           <div>
             Upload Image
             <p className="text-[14px]">* recommended size: minimum 550px</p>
@@ -153,117 +158,85 @@ function EditDashboard() {
             />
           </div>
         </div>
-        {/* <div className="dashboard-img">
-          <img src={previewUrl} alt="profile" />
-          <div>
-            Upload an Id Scan
-            <p className="text-[14px]">* recommended size: minimum 550px</p>
-            <label htmlFor="profile-img">Upload</label>
-            <input
-              id="profile-img"
-              type="file"
-              name="image"
-              onChange={onFileUploadChange}
-            />
-          </div>
-        </div> */}
 
         <fieldset>
           <input
             type="text"
-            placeholder={"First Name"}
-            name="full_name.firstname"
-            onChange={(e) => setFirstName(e.target.value)}
+            placeholder={getData?.user?.full_name || "Full Name"}
+            name="full_name"
+            onChange={(e) => setFullName(e.target.value)}
             className="edit-input"
           />
+
           <input
             type="text"
-            placeholder={"Last Name"}
-            name="full_name.lastname"
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder={"Job Title"}
-            name="Job_title"
-            onChange={(e) => setJobTitle(e.target.value)}
+            placeholder={getData?.user?.username || "Username"}
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="tel"
-            placeholder={"Phone No"}
+            placeholder={getData?.user?.contact_phone || "Phone No"}
             name="contact_phone"
             onChange={(e) => setPhone(e.target.value)}
           />
 
           <input
             type="text"
-            placeholder={"Gender"}
+            placeholder={getData?.user?.gender || "Gender"}
             name="gender"
             onChange={(e) => setGender(e.target.value)}
           />
           <input
             type="text"
-            placeholder={"DOB: dd/mm/yyyy"}
+            placeholder={getData?.user?.date_of_birth || "DOB: dd/mm/yyyy"}
             pattern="\d{1,2}/\d{1,2}/\d{4}"
             name="dob"
             onChange={(e) => setDob(e.target.value)}
           />
           <input
             type="text"
-            placeholder={"Nationality"}
+            placeholder={getData?.user?.nationality || "Nationality"}
             name="nationality"
             onChange={(e) => setNationality(e.target.value)}
           />
 
           <input
             type="text"
-            placeholder={"State"}
+            placeholder={getData?.user?.state || "State"}
             name="state"
             onChange={(e) => setState(e.target.value)}
           />
           <input
             type="text"
-            placeholder={"City"}
+            placeholder={getData?.user?.city || "City"}
             name="city"
             onChange={(e) => setCity(e.target.value)}
           />
-          <input
-            type="number"
-            placeholder={"Year of Expr."}
-            name="yearofex"
-            onChange={(e) => setYOE(e.target.value)}
-          />
-          {/* <input
-            type="text"
-            placeholder={jobSeeker.full_address || "Address"}
-            className="longg"
-            name="address"
-            onChange={(e) => setAddress(e.target.value)}
-          /> */}
         </fieldset>
         <div className="profile-social">Social Networks</div>
         <fieldset>
           <input
             type="url"
-            placeholder={"Facebook URL"}
+            placeholder={getData?.user?.facebook || "Facebook URL"}
             name="social_media.facebook"
             onChange={(e) => setFacebook(e.target.value)}
           />
           <input
             type="url"
-            placeholder={"LinkedIn URL"}
+            placeholder={getData?.user?.linkedin || "LinkedIn URL"}
             name="social_media.linkedin"
             onChange={(e) => setLinkedin(e.target.value)}
           />
           <input
             type="url"
-            placeholder={"Instagram URL"}
+            placeholder={getData?.user?.instagram || "Instagram URL"}
             name="social_media.instagram"
             onChange={(e) => setInstagram(e.target.value)}
           />
           <input
             type="url"
-            placeholder={"Twitter URL"}
+            placeholder={getData?.user?.twitter || "Twitter URL"}
             name="social_media.twitter"
             onChange={(e) => setTwitter(e.target.value)}
           />
@@ -279,6 +252,7 @@ function EditDashboard() {
             <button type="submit">Update</button> // Show "Update" button
           )}
         </div>
+        <ToastContainer />
       </form>
     </div>
   );

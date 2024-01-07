@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
-const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
+const LocationForm = ({
+  handleLocationClose,
+  handleAmentyClick,
+  formData,
+  handleInputChange,
+}) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,9 +26,9 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -42,9 +47,9 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -63,9 +68,9 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -85,9 +90,9 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -99,7 +104,7 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           Amenities
         </li>
       </ol>
-      <form className=" my-5   w-full">
+      <div className=" my-5   w-full">
         <div className="title-desc text-[20px] font-bold text-gray-500">
           Location
         </div>
@@ -108,14 +113,16 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="county"
+              id="county"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.county}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               County
@@ -125,14 +132,16 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="city"
+              id="city"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.city}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               City
@@ -141,14 +150,16 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="state"
+              id="state"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.state}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               State
@@ -157,14 +168,16 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="area"
+              id="area"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.area}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Neighborhood / Area
@@ -174,14 +187,16 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="country"
+              id="country"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.country}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Country
@@ -190,14 +205,16 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="postal_code"
+              id="postal_code"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
               required
+              value={formData.postal_code}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               PostalCode
@@ -220,7 +237,7 @@ const LocationForm = ({ handleLocationClose, handleAmentyClick }) => {
             Continue
           </button>
         </div>
-      </form>
+      </div>
     </>
   );
 };

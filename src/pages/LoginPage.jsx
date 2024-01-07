@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import { loginUser } from "../../Apis/Auth";
 import { API_URL } from "../../ProtectedRoute";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -27,8 +28,9 @@ function LoginPage() {
 
     try {
       const result = await loginUser(formData);
-      console.log(result.token);
+      // console.log(result.token);
       localStorage.setItem("authToken", result.token);
+      localStorage.setItem("userId", result?.user?._id);
       toast.success("Login Successfully!!!");
       const timeoutId = setTimeout(() => {
         window.location.href = "/";
@@ -92,7 +94,9 @@ function LoginPage() {
         <ToastContainer />
 
         <div className="flex justify-between items-center mt-6">
-          <Link className="text-sm text-gray-500">Forgot password?</Link>
+          <Link to={"/forgot-passwrd"} className="text-sm text-gray-500">
+            Forgot password?
+          </Link>
           <span className="text-sm text-gray-500">
             Don&#39;t have an account?{" "}
             <Link

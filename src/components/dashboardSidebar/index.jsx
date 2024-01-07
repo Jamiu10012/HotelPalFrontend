@@ -7,6 +7,7 @@ import { AiOutlineFileDone } from "react-icons/ai";
 // import { AiFillMessage } from "react-icons/ai";
 import { HiOutlineLogout } from "react-icons/hi";
 import { useEffect, useState } from "react";
+import { getUserById } from "../../../Apis/getUser";
 
 const dataItem = [
   {
@@ -28,16 +29,31 @@ const dataItem = [
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const [getData, setGetData] = useState(null);
+  const token = localStorage.getItem("authToken");
+  const userId = localStorage.getItem("userId");
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserById(userId, token);
+        setGetData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
   const avatar = "/images/hero-slide-01.webp";
   return (
     <div className="profile-sidebar">
       <div className="profile-img-container">
-        <img src={avatar} alt="profile" />
+        <img src={getData?.user?.profile_picture || avatar} alt="profile" />
         <div className="profile-name">
-          <h5>
-            {"Jane"} {"Smith"}
-          </h5>
+          <h5>{getData?.user?.username}</h5>
         </div>
       </div>
 

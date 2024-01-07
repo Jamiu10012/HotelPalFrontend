@@ -10,9 +10,13 @@ const options = [
   "Gym",
 ];
 
-const AmentyForm = ({ handleAmentyClose }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
+const AmentyForm = ({
+  handleAmentyClose,
+  formData,
+  handleInputChange,
+  selectedOptions,
+  setSelectedOptions,
+}) => {
   const handleOptionClick = (option) => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((item) => item !== option));
@@ -40,9 +44,9 @@ const AmentyForm = ({ handleAmentyClose }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -61,9 +65,9 @@ const AmentyForm = ({ handleAmentyClose }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -82,9 +86,9 @@ const AmentyForm = ({ handleAmentyClose }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -104,9 +108,9 @@ const AmentyForm = ({ handleAmentyClose }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -118,7 +122,7 @@ const AmentyForm = ({ handleAmentyClose }) => {
           Amenities
         </li>
       </ol>
-      <form className=" my-5   w-full">
+      <div className=" my-5   w-full">
         <div className="title-desc text-[20px] font-bold text-gray-500 mb-4">
           Other Features
         </div>
@@ -127,14 +131,15 @@ const AmentyForm = ({ handleAmentyClose }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="late_checkin"
+              id="late_checkin"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
-              required
+              value={formData.late_checkin}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Late Check-in: Before 11 PM
@@ -144,14 +149,15 @@ const AmentyForm = ({ handleAmentyClose }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="optional_service"
+              id="optional_service"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
-              required
+              value={formData.optional_service}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Optional Services: kitchen fully equipped
@@ -160,14 +166,15 @@ const AmentyForm = ({ handleAmentyClose }) => {
           <div className="relative z-0 inp-lab-container mb-5 group">
             <input
               type="text"
-              name=""
-              id=""
+              name="outdor_facilities"
+              id="outdor_facilities"
               className="block desc-input py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 outline-none  peer"
               placeholder=" "
-              required
+              value={formData.outdor_facilities}
+              onChange={handleInputChange}
             />
             <label
-              for=""
+              htmlFor=""
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fe598d] peer-focus:dark:text-[#fe598d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Outdoor Facilities: restaurants and bars.
@@ -191,7 +198,7 @@ const AmentyForm = ({ handleAmentyClose }) => {
               ))}
             </div>
             <div className="mt-4">
-              <p>Selected Options: {selectedOptions.join(", ")}</p>
+              {/* <p>Selected Options: {selectedOptions.join(", ")}</p> */}
             </div>
           </div>
         </div>
@@ -204,13 +211,13 @@ const AmentyForm = ({ handleAmentyClose }) => {
             Back
           </button>
           <button
-            //   type="submit"
+            type="submit"
             className="  text-white bg-[#fe598d] hover:bg-[#fff] hover:border hover:text-[#fe598d]  hover:border-[#fe598d] focus:ring-4 focus:outline-none focus:ring-[#fe598d] font-medium rounded-lg text-sm w-[200px]  px-5 py-2.5 text-center "
           >
             Submit
           </button>
         </div>
-      </form>
+      </div>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   MdAddPhotoAlternate,
@@ -5,7 +6,12 @@ import {
   MdOutlineAdd,
   MdOutlineClose,
 } from "react-icons/md";
-const ImageForm = ({ handleImageClose, handleLocationClick }) => {
+const ImageForm = ({
+  handleImageClose,
+  handleLocationClick,
+  setCoverData,
+  setRestImage,
+}) => {
   const [coverImage, setCoverImage] = useState(null);
   const [images, setImages] = useState([]);
 
@@ -13,16 +19,17 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onloadend = () => {
         const imageData = {
-          id: new Date().getTime(), // You can use a more robust ID generation method
-          url: e.target.result,
+          id: new Date().getTime(),
+          url: reader.result,
         };
         setImages((prevImages) => [...prevImages, imageData]);
       };
       reader.readAsDataURL(file);
     }
   };
+  // console.log(images.url);
 
   const handleImageDelete = (id) => {
     setImages((prevImages) => prevImages.filter((img) => img.id !== id));
@@ -38,9 +45,50 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
       reader.readAsDataURL(file);
     }
   };
+  // console.log(coverImage);
   const handleDeleteButtonClick = () => {
     setCoverImage(null);
   };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    let formData = new FormData();
+    formData.append("file", coverImage);
+    formData.append("upload_preset", "rgfgxgi0");
+
+    // Upload image only if a file is provided
+    let imageUrl;
+    if (coverImage) {
+      await axios({
+        method: "POST",
+        url: "https://api.cloudinary.com/v1_1/dyojshtoe/image/upload",
+        data: formData,
+      }).then((response) => {
+        imageUrl = response.data.secure_url;
+        setCoverData(imageUrl);
+      });
+    }
+    // console.log(imageUrl);
+
+    let imagesUrls = [];
+    for (const image of images) {
+      const imageFormData = new FormData();
+      imageFormData.append("file", image.url);
+
+      imageFormData.append("upload_preset", "rgfgxgi0");
+
+      await axios({
+        method: "POST",
+        url: "https://api.cloudinary.com/v1_1/dyojshtoe/image/upload",
+        data: imageFormData,
+      }).then((response) => {
+        imagesUrls.push(response.data.secure_url);
+        setRestImage(imagesUrls);
+      });
+    }
+    handleLocationClick();
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,9 +109,9 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -82,9 +130,9 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -103,9 +151,9 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -125,9 +173,9 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m7 9 4-4-4-4M1 9l4-4-4-4"
             />
           </svg>
@@ -139,7 +187,7 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
           Amenities
         </li>
       </ol>
-      <form className=" my-5   w-full">
+      <div className=" my-5   w-full">
         <div className="title-desc text-[20px] font-bold text-gray-500">
           Images
         </div>
@@ -223,12 +271,13 @@ const ImageForm = ({ handleImageClose, handleLocationClick }) => {
           <button
             //   type="submit"
             className="  text-white bg-[#fe598d] hover:bg-[#fff] hover:border hover:text-[#fe598d]  hover:border-[#fe598d] focus:ring-4 focus:outline-none focus:ring-[#fe598d] font-medium rounded-lg text-sm w-[200px]  px-5 py-2.5 text-center "
-            onClick={handleLocationClick}
+            // onClick={handleLocationClick}
+            onClick={handleSubmit}
           >
             Continue
           </button>
         </div>
-      </form>
+      </div>
     </>
   );
 };
