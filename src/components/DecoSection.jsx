@@ -1,8 +1,14 @@
 import { IoLocation } from "react-icons/io5";
 import "../assets/css/homePage.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function DecoSection() {
+  const navigate = useNavigate();
+
+  const gotoSign = () => {
+    navigate("register");
+  };
   const data = [
     {
       img: "https://mapro.s3.amazonaws.com/37/584c89ba14645134ec2a8513a167d8c4d0ed8867-1220.jpg",
@@ -68,7 +74,10 @@ function DecoSection() {
               service. Welcome to the future of hospitality.
             </p>
             <div className="about-btn-box flex gap-5 my-8">
-              <button className="about-btn w-[120px] hover:bg-[#fff] hover:text-[#fe598d] bg-[#fe598d] rounded text-[#fff] h-[35px]">
+              <button
+                className="about-btn w-[120px] hover:bg-[#fff] hover:text-[#fe598d] bg-[#fe598d] rounded text-[#fff] h-[35px]"
+                onClick={gotoSign}
+              >
                 Become a host
               </button>
               <button className="about-btn w-[110px] rounded bg-[#fff]  text-[#fe598d] h-[35px] hover:bg-[#fe598d] hover:text-[#fff]">
@@ -77,14 +86,6 @@ function DecoSection() {
             </div>
           </div>
         </div>
-        {/* <div className="indicator flex gap-1 absolute bottom-20 left-[50%]  ">
-        {data.map((_, i) => (
-          <div
-            key={i}
-            className={`eac-ind  ${currentIndex === i ? "act-ind" : ""}`}
-          ></div>
-        ))}
-      </div> */}
       </div>
     </div>
   );

@@ -1,14 +1,11 @@
+import EzClickLogo2 from "../assets/images/EzClickLogo2.png";
 const Footer = () => {
   return (
     <footer className="bg-[#5f4c76] ">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0 w-full">
-            <img
-              src="/images/EzClickLogo1.png"
-              className="h-12 me-3 w-[100px]"
-              alt=""
-            />
+            <img src={EzClickLogo2} className="h-12 me-3 w-[100px]" alt="" />
             <p className="text-[#fff] w-[80%] mt-5">
               EZ CLICK STAY is committed to delivering a high level of
               expertise, customer service, and attention to detail to the market

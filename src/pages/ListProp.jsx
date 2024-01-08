@@ -15,7 +15,6 @@ const ListProp = () => {
   const [coverData, setCoverData] = useState("");
   const [restImage, setRestImage] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  console.log(coverData);
   const token = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
@@ -35,7 +34,7 @@ const ListProp = () => {
     cleaning_fee: "",
     extra_people: "",
 
-    cover_image: "",
+    cover_image: coverData,
     rest_images: [],
 
     county: "",
@@ -53,34 +52,25 @@ const ListProp = () => {
 
   const handleAmentyClick = (e) => {
     e.preventDefault();
-    // if (
-    //   formData.county.trim() === "" ||
-    //   formData.city.trim() === "" ||
-    //   formData.state.trim() === "" ||
-    //   formData.area.trim() === "" ||
-    //   formData.country.trim() === "" ||
-    //   formData.postal_code.trim() === ""
-    // ) {
-    //   // If any field is empty, you can handle it accordingly (e.g., show an error message)
-    //   toast.error("Please fill in all fields before proceeding to next step");
-    // } else {
-    //   // If all fields are filled, proceed to set isPrice to true
-    //   SetIsAmenty(true);
-    // }
-    SetIsAmenty(true);
+    if (
+      formData.county.trim() === "" ||
+      formData.city.trim() === "" ||
+      formData.state.trim() === "" ||
+      formData.area.trim() === "" ||
+      formData.country.trim() === "" ||
+      formData.postal_code.trim() === ""
+    ) {
+      toast.error("Please fill in all fields before proceeding to next step");
+    } else {
+      SetIsAmenty(true);
+    }
   };
   const handleAmentyClose = () => {
     SetIsAmenty(false);
   };
 
   const handleLocationClick = (e) => {
-    setFormData({
-      ...formData,
-      cover_image: coverData,
-      rest_images: restImage,
-    });
     SetIsLocation(true);
-    console.log(restImage);
   };
   const handleLocationClose = () => {
     SetIsLocation(false);
@@ -88,23 +78,19 @@ const ListProp = () => {
 
   const handleImageClick = (e) => {
     e.preventDefault();
-    // Check if any of the required fields are empty
-    // if (
-    //   formData.currency.trim() === "" ||
-    //   formData.price_per_night.trim() === "" ||
-    //   formData.price_per_night_month.trim() === "" ||
-    //   formData.price_per_night_week.trim() === "" ||
-    //   formData.tax_fee.trim() === "" ||
-    //   formData.cleaning_fee.trim() === "" ||
-    //   formData.extra_people.trim() === ""
-    // ) {
-    //   // If any field is empty, you can handle it accordingly (e.g., show an error message)
-    //   toast.error("Please fill in all fields before proceeding to next step");
-    // } else {
-    //   // If all fields are filled, proceed to set isImage to true
-    //   SetIsImage(true);
-    // }
-    SetIsImage(true);
+    if (
+      formData.currency.trim() === "" ||
+      formData.price_per_night.trim() === "" ||
+      formData.price_per_night_month.trim() === "" ||
+      formData.price_per_night_week.trim() === "" ||
+      formData.tax_fee.trim() === "" ||
+      formData.cleaning_fee.trim() === "" ||
+      formData.extra_people.trim() === ""
+    ) {
+      toast.error("Please fill in all fields before proceeding to next step");
+    } else {
+      SetIsImage(true);
+    }
   };
   const handleImageClose = () => {
     SetIsImage(false);
@@ -112,22 +98,19 @@ const ListProp = () => {
 
   const handlePriceClick = (e) => {
     e.preventDefault();
-    // if (
-    //   formData.description.trim() === "" ||
-    //   formData.title.trim() === "" ||
-    //   formData.category.trim() === "" ||
-    //   formData.room_type.trim() === "" ||
-    //   formData.guest_no.trim() === "" ||
-    //   formData.bathrooms.trim() === "" ||
-    //   formData.bedrooms.trim() === ""
-    // ) {
-    //   // If any field is empty, you can handle it accordingly (e.g., show an error message)
-    //   toast.error("Please fill in all fields before proceeding to next step");
-    // } else {
-    //   // If all fields are filled, proceed to set isPrice to true
-    // SetIsPrice(true);
-    // }
-    SetIsPrice(true);
+    if (
+      formData.description.trim() === "" ||
+      formData.title.trim() === "" ||
+      formData.category.trim() === "" ||
+      formData.room_type.trim() === "" ||
+      formData.guest_no.trim() === "" ||
+      formData.bathrooms.trim() === "" ||
+      formData.bedrooms.trim() === ""
+    ) {
+      toast.error("Please fill in all fields before proceeding to next step");
+    } else {
+      SetIsPrice(true);
+    }
   };
   const handlePriceClose = () => {
     SetIsPrice(false);
@@ -140,24 +123,11 @@ const ListProp = () => {
       [name]: value,
     });
   };
-  console.log(formData);
-  console.log(selectedOptions);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedOptions);
-    setFormData({
-      ...formData,
-      amenties: selectedOptions,
-    });
-    // if (selectedOptions.length === 0) {
-    //   setFormData({
-    //     ...formData,
-    //     amenties: selectedOptions,
-    //   });
-    // }
+
     try {
       const result = await CreateProperty(formData, userId, token);
-      console.log(result);
       toast.success("Property Created Successfully!!!");
 
       return () => clearTimeout(timeoutId);
@@ -193,6 +163,7 @@ const ListProp = () => {
           handleLocationClick={handleLocationClick}
           setCoverData={setCoverData}
           setRestImage={setRestImage}
+          setFormData={setFormData}
         />
       )}
       {isLocation && !isAmenty && (
@@ -207,6 +178,7 @@ const ListProp = () => {
         <AmentyForm
           handleAmentyClose={handleAmentyClose}
           formData={formData}
+          setFormData={setFormData}
           handleInputChange={handleInputChange}
           selectedOptions={selectedOptions}
           setSelectedOptions={setSelectedOptions}

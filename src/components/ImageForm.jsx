@@ -11,6 +11,7 @@ const ImageForm = ({
   handleLocationClick,
   setCoverData,
   setRestImage,
+  setFormData,
 }) => {
   const [coverImage, setCoverImage] = useState(null);
   const [images, setImages] = useState([]);
@@ -65,6 +66,10 @@ const ImageForm = ({
         data: formData,
       }).then((response) => {
         imageUrl = response.data.secure_url;
+        setFormData((prev) => ({
+          ...prev,
+          cover_image: imageUrl,
+        }));
         setCoverData(imageUrl);
       });
     }
@@ -83,6 +88,10 @@ const ImageForm = ({
         data: imageFormData,
       }).then((response) => {
         imagesUrls.push(response.data.secure_url);
+        setFormData((prev) => ({
+          ...prev,
+          rest_images: imagesUrls,
+        }));
         setRestImage(imagesUrls);
       });
     }

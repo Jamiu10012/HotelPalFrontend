@@ -29,10 +29,7 @@ function HomePage() {
         </div>
         <div className="py-10 w-full flex justify-between flex-wrap gap-5 ">
           <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-        </div>{" "}
+        </div>
       </div>
     </div>
   );

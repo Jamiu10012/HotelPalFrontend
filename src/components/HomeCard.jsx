@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import CardCol from "./CardCol";
 
 const HomeCard = () => {
+  const navigate = useNavigate();
+
+  const gotoProp = () => {
+    navigate("properties");
+  };
   return (
     <div className="card-box-all  mt-10 p-10 px-20">
       <div className="text-[25px] font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">
@@ -36,7 +42,10 @@ const HomeCard = () => {
         <CardCol />
       </div>
       <div className="btn-cont flex justify-center my-5">
-        <div className="inline-flex justify-center items-center cursor-pointer px-3 py-2 text-sm font-medium text-center text-white bg-[#fe598d] rounded-lg hover:bg-[#fff] focus:ring-4 focus:outline-none focus:ring-[#fc69988d] dark:bg-[#fe598d] dark:hover:bg-[#fe598d] dark:focus:ring-[#fe598d] w-[150px] ">
+        <div
+          className="inline-flex justify-center items-center cursor-pointer px-3 py-2 text-sm font-medium text-center text-white bg-[#fe598d] rounded-lg hover:bg-[#fff] hover:border hover:border-[#fe598d] hover:text-[#fe598d]  w-[150px] "
+          onClick={gotoProp}
+        >
           View more
           <svg
             className="rtl:rotate-180 w-3.5 h-3.5 ms-2"

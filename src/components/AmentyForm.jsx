@@ -16,14 +16,23 @@ const AmentyForm = ({
   handleInputChange,
   selectedOptions,
   setSelectedOptions,
+  setFormData,
 }) => {
   const handleOptionClick = (option) => {
-    if (selectedOptions.includes(option)) {
-      setSelectedOptions(selectedOptions.filter((item) => item !== option));
-    } else {
-      setSelectedOptions([...selectedOptions, option]);
-    }
+    setSelectedOptions((prevOptions) => {
+      const updatedOptions = prevOptions.includes(option)
+        ? prevOptions.filter((item) => item !== option)
+        : [...prevOptions, option];
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        amenties: updatedOptions,
+      }));
+
+      return updatedOptions;
+    });
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
