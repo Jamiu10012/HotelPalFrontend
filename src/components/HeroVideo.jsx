@@ -4,7 +4,7 @@ import "../assets/css/homePage.css";
 const HeroVideo = () => {
   return (
     <div className="main-hero h-[70vh] w-full relative">
-      <div className="absolute w-full top-0 h-full bg-[#4845453b]"></div>
+      {/* <div className="absolute w-full top-0 h-full bg-[#4845453b]"></div> */}
       <video autoPlay loop muted playsInline className="vids w-[100vw]">
         <source src={er} type="video/mp4" />
         Your browser does not support the video tag.

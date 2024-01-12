@@ -8,6 +8,7 @@ const FilterModal = ({ data, handleIsGuestClose }) => {
         <div
           key={index}
           className="list-filt"
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
           onClick={() => handleSelectGuests(item)}
         >
           {item}

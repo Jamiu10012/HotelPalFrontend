@@ -46,3 +46,6 @@ video {
   --primary: #5f4c76;
   /* --primary-deep: #f06292; */
 }
+.card-prop {
+  cursor: pointer;
+}

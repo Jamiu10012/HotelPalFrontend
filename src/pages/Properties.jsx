@@ -1,7 +1,101 @@
 import CardCol from "../components/CardCol";
 import "../assets/css/property.css";
 import PropertyFilter from "../components/PropertyFilter";
+import { useEffect, useState } from "react";
+import { getPropertiesSix } from "../../Apis/ListProp";
+import { useSearchParams } from "react-router-dom";
 const Properties = () => {
+  const [propertyData, setPropertyData] = useState(null);
+  const [searchParams] = useSearchParams();
+  const location = searchParams.get("l");
+  const checkIn = searchParams.get("n");
+  const checkOut = searchParams.get("o");
+  const guest = searchParams.get("g");
+
+  const [locationText, setLocationText] = useState(location);
+  const [checkInText, setCheckInText] = useState(checkIn);
+  const [checkOutText, setCheckOutText] = useState(checkOut);
+  const [guestText, setGuestText] = useState(guest);
+  const [selectedBath, setSelectedBath] = useState("");
+  const [selectedBed, setSelectedBed] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [priceFrom, setpriceFrom] = useState("");
+  const [priceTo, setpriceTo] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPropertiesSix();
+        setPropertyData(data);
+      } catch (error) {
+        console.error("Error fetching property data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  // console.log(priceFrom);
+  let filteredProperties = propertyData;
+
+  if (locationText) {
+    const locationLower = locationText.toLowerCase();
+    filteredProperties = filteredProperties?.filter(
+      (property) =>
+        property.country.toLowerCase().includes(locationLower) ||
+        property.state.toLowerCase().includes(locationLower) ||
+        property.city.toLowerCase().includes(locationLower) ||
+        property.county.toLowerCase().includes(locationLower) ||
+        property.area.toLowerCase().includes(locationLower)
+    );
+  }
+
+  if (guestText) {
+    const guestNumber = parseInt(guestText, 10);
+    filteredProperties = filteredProperties?.filter(
+      (property) => property.guest_no >= guestNumber
+    );
+  }
+  if (selectedBath) {
+    const bathNumber = parseInt(selectedBath, 10);
+    filteredProperties = filteredProperties?.filter(
+      (property) => property.bathrooms >= bathNumber
+    );
+  }
+  if (selectedBed) {
+    const bedNumber = parseInt(selectedBed, 10);
+    filteredProperties = filteredProperties?.filter(
+      (property) => property.bedrooms >= bedNumber
+    );
+  }
+  if (selectedType) {
+    const sCate = selectedType?.toLowerCase();
+    filteredProperties = filteredProperties?.filter((property) =>
+      property.category.toLowerCase().includes(sCate)
+    );
+  }
+  if (selectedSize) {
+    const sType = selectedSize?.toLowerCase();
+    filteredProperties = filteredProperties?.filter((property) =>
+      property.room_type.toLowerCase().includes(sType)
+    );
+  }
+
+  if (priceFrom && priceTo) {
+    const priceFromValue = parseFloat(priceFrom);
+    const priceToValue = parseFloat(priceTo);
+    filteredProperties = filteredProperties?.filter(
+      (property) =>
+        Number(property.price_per_night) >= priceFromValue &&
+        Number(property.price_per_night) <= priceToValue
+    );
+  }
+  // if (guestText) {
+  //   const guestNumber = parseInt(guestText, 10);
+  //   filteredProperties = filteredProperties.filter(
+  //     (property) => property.guest_no >= guestNumber
+  //   );
+  // }
   return (
     <>
       <div className='hero-section relative h-[50vh] after:content-[" "] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-r after:from-[rgba(255,251,246,0.8)] after:to-transparent flex w-full overflow-hidden mb-5 pt-2 '>
@@ -22,22 +116,38 @@ const Properties = () => {
         </div>
       </div>
       <div className="sort-propertie-container">
-        <PropertyFilter />
+        <PropertyFilter
+          locationText={locationText}
+          setLocationText={setLocationText}
+          checkInText={checkInText}
+          setCheckInText={setCheckInText}
+          checkOutText={checkOutText}
+          setCheckOutText={setCheckOutText}
+          guestText={guestText}
+          setGuestText={setGuestText}
+          setSelectedBath={setSelectedBath}
+          selectedBath={selectedBath}
+          selectedBed={selectedBed}
+          setSelectedBed={setSelectedBed}
+          selectedType={selectedType}
+          setSelectedType={setSelectedType}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+          priceFrom={priceFrom}
+          setpriceFrom={setpriceFrom}
+          priceTo={priceTo}
+          setpriceTo={setpriceTo}
+        />
       </div>
 
-      <div className="card-row-container flex gap-4  justify-between flex-wrap p-20">
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
-        <CardCol />
+      <div className="card-row-container flex gap-10   flex-wrap p-20">
+        {filteredProperties?.length > 0 ? (
+          filteredProperties?.map((property) => (
+            <CardCol key={property._id} property={property} />
+          ))
+        ) : (
+          <p>No properties found.</p>
+        )}
       </div>
     </>
   );

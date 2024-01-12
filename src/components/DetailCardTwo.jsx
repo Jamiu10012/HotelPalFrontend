@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-const DetailCardTwo = () => {
+const DetailCardTwo = ({ getData }) => {
   const [isclick, setIsclick] = useState(false);
 
   const handleClick = () => {
@@ -34,20 +34,25 @@ const DetailCardTwo = () => {
           <p className="mb-3 font-normal text-black">
             Listing Size: 2,500 ft<sup>2</sup>
           </p>
-          <p className="mb-3 font-normal text-black">Rooms: 5</p>
-          <p className="mb-3 font-normal text-black">Bedrooms: 3</p>
-          <p className="mb-3 font-normal text-black">Bathrooms: 2</p>
+          {/* <p className="mb-3 font-normal text-black">Rooms: {getData?.description</p> */}
+          <p className="mb-3 font-normal text-black">
+            Bedrooms: {getData?.bedrooms}
+          </p>
+          <p className="mb-3 font-normal text-black">
+            Bathrooms: {getData?.bathrooms}
+          </p>
           <p className="mb-3 font-normal text-black">
             Late Check-in: Before 11 PM
           </p>
           <p className="mb-3 font-normal text-black">
-            Optional Services: kitchen fully equipped
+            Optional Services: {getData?.optional_service}
           </p>
           <p className="mb-3 font-normal text-black">
-            Extra People: 1 extra bed for $40/night.
+            Extra People: 1 extra bed for {getData?.currency}
+            {getData?.extra_people}/night.
           </p>
           <p className="mb-3 font-normal text-black">
-            Outdoor Facilities: restaurants and bars.
+            Outdoor Facilities: {getData?.outdor_facilities}
           </p>
           <p className="mb-3 font-normal text-black">
             Cancellation: free of charge.

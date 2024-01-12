@@ -8,6 +8,7 @@ import { AiOutlineFileDone } from "react-icons/ai";
 import { HiOutlineLogout } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../../Apis/getUser";
+import { RiReservedFill } from "react-icons/ri";
 
 const dataItem = [
   {
@@ -20,10 +21,15 @@ const dataItem = [
     to: "/edit-das",
     icon: <FiEdit />,
   },
+  // {
+  //   label: "My Properties",
+  //   to: "/dash",
+  //   icon: <AiOutlineFileText />,
+  // },
   {
-    label: "My Properties",
-    to: "/dash",
-    icon: <AiOutlineFileText />,
+    label: "My Reservation",
+    to: "/booked-list",
+    icon: <RiReservedFill />,
   },
 ];
 

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-const TopDetail = () => {
-  const data = [
-    { img: "/images/hero-slide-01.webp", loc: "Bangkok", num: 3 },
-    { img: "/images/hero-slide-02.webp", loc: "Lagos", num: 4 },
-    { img: "/images/hero-slide-03.webp", loc: "GeoGia", num: 2 },
-  ];
+const TopDetail = ({ combinedImages }) => {
+  // const data = [
+  //   { img: "/images/hero-slide-01.webp", loc: "Bangkok", num: 3 },
+  //   { img: "/images/hero-slide-02.webp", loc: "Lagos", num: 4 },
+  //   { img: "/images/hero-slide-03.webp", loc: "GeoGia", num: 2 },
+  // ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === data.length - 1 ? 0 : prevIndex + 1
+      prevIndex === combinedImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1
+      prevIndex === 0 ? combinedImages.length - 1 : prevIndex - 1
     );
   };
 
@@ -31,7 +31,7 @@ const TopDetail = () => {
   return (
     <div className="image-container-detail relative">
       <img
-        src={data[currentImageIndex].img}
+        src={combinedImages[currentImageIndex]}
         alt=""
         className="w-full h-[80vh] object-cover mage"
       />

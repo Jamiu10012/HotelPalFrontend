@@ -1,7 +1,13 @@
 .cls-bx {
   display: none;
 }
+.menu-v {
+  display: none;
+}
 @media only screen and (max-width: 1000px) {
+  .menu-v {
+    display: initial;
+  }
   .nav-ul {
     position: absolute;
     flex-direction: column;

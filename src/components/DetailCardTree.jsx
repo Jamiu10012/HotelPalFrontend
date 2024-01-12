@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-const DetailCardTree = () => {
+const DetailCardTree = ({ getData }) => {
   const [isclick, setIsclick] = useState(false);
 
   const handleClick = () => {
@@ -30,12 +30,20 @@ const DetailCardTree = () => {
 
       {isclick && (
         <>
-          <p className="mb-3 font-normal text-black">Address: Ridge Street</p>
-          <p className="mb-3 font-normal text-black">County: New York County</p>
-          <p className="mb-3 font-normal text-black">City: New York</p>
-          <p className="mb-3 font-normal text-black">State: NY</p>
-          <p className="mb-3 font-normal text-black">Postcode: 10007</p>
-          <p className="mb-3 font-normal text-black">Country: United States</p>
+          <p className="mb-3 font-normal text-black">
+            Address: {getData?.area} Street
+          </p>
+          <p className="mb-3 font-normal text-black">
+            County:{getData?.county} County
+          </p>
+          <p className="mb-3 font-normal text-black">City: {getData?.city}</p>
+          <p className="mb-3 font-normal text-black">State: {getData?.state}</p>
+          <p className="mb-3 font-normal text-black">
+            Postcode: {getData?.postal_code}
+          </p>
+          <p className="mb-3 font-normal text-black">
+            Country: {getData?.country}
+          </p>
         </>
       )}
     </div>

@@ -3,9 +3,29 @@ import { LiaCitySolid } from "react-icons/lia";
 import { PiUsersLight } from "react-icons/pi";
 import { BsDashCircle } from "react-icons/bs";
 import { BsPlusCircle } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function BookingForm() {
   const [guest, setGuest] = useState(1);
+  const navigate = useNavigate();
+  const [location, setLocation] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+  const handleCheckInChange = (event) => {
+    setCheckIn(event.target.value);
+  };
+  const handleCheckOutChange = (event) => {
+    setCheckOut(event.target.value);
+  };
+  console.log(guest);
+
+  const gotoProp = () => {
+    navigate(`/properties?l=${location}&n=${checkIn}&o=${checkOut}&g=${guest}`);
+  };
 
   return (
     <div className="boo-cont absolute -bottom-[1rem] left-[7%] rounded-full search-container w-[85%] mx-auto bg-white flex py-2 px-2 z-20">
@@ -20,6 +40,8 @@ function BookingForm() {
             id="location"
             placeholder="location"
             className="inp-book w-[300px] h-full bg-faint_pink outline-none px-4 text-[16px]"
+            value={location}
+            onChange={handleLocationChange}
           />
         </div>
         <div className="rm-brd flex gap-2 justify-center items-center">
@@ -28,6 +50,8 @@ function BookingForm() {
             type="date"
             placeholder="YYYY-MM-DD"
             className="inp-book chek-inp border-[1px] px-2 rounded-sm text-[12px]"
+            value={checkIn}
+            onChange={handleCheckInChange}
           />
         </div>
         <div className=" rm-brd flex gap-2 justify-center items-center">
@@ -35,6 +59,8 @@ function BookingForm() {
           <input
             type="date"
             className="inp-book chek-inp border-[1px] px-2 rounded-sm text-[12px]"
+            value={checkOut}
+            onChange={handleCheckOutChange}
           />
         </div>
 
@@ -72,7 +98,11 @@ function BookingForm() {
           </div>
         </div>
         <div className="btn-ser">
-          <button className="flex justify-center items-center bg-primary_pink rounded-full py-2 px-6 text-[16px] text-white">
+          <button
+            className="flex justify-center items-center bg-primary_pink rounded-full py-2 px-6 text-[16px] text-white"
+            type="button"
+            onClick={gotoProp}
+          >
             Search
           </button>
         </div>

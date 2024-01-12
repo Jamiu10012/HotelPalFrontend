@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-const DetailCardFour = () => {
+const DetailCardFour = ({ getData }) => {
   const [isclick, setIsclick] = useState(false);
 
   const handleClick = () => {
@@ -30,15 +30,11 @@ const DetailCardFour = () => {
 
       {isclick && (
         <>
-          <p className="mb-3 font-normal text-black">Kitchen</p>
-          <p className="mb-3 font-normal text-black">Heating</p>
-          <p className="mb-3 font-normal text-black">Pool</p>
-          <p className="mb-3 font-normal text-black">Dryer</p>
-          <p className="mb-3 font-normal text-black">Fax</p>
-          <p className="mb-3 font-normal text-black">TV</p>
-          <p className="mb-3 font-normal text-black">Essentials</p>
-          <p className="mb-3 font-normal text-black">Washer</p>
-          <p className="mb-3 font-normal text-black">Gym</p>
+          {getData?.amenties.map((amenity, index) => (
+            <p key={index} className="mb-3 font-normal text-black">
+              {amenity}
+            </p>
+          ))}
         </>
       )}
     </div>

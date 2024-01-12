@@ -99,7 +99,67 @@
   padding: 0 10px;
   text-align: center;
 }
-
+.cal-price-box {
+  border: 1px solid #fff;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  height: 40px;
+}
+.left-pric {
+  border-right: 1px solid #fff;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.npb {
+  border: none;
+  margin-left: 10px;
+}
+/* booked */
+.cont-booked img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.booked-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+.booked-price {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.booked-price p {
+  font-size: 12px;
+  color: #5e5b5c;
+}
+.cont-booked {
+  display: flex;
+  gap: 10px;
+}
+.can-btn {
+  background: #fe598d;
+  padding: 0 30px;
+  height: 35px;
+  border-radius: 6px;
+  color: #fff;
+  margin: 10px 0;
+}
+.booked-card-box {
+  border: 2px solid #5e5b5c;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 @media only screen and (max-width: 1000px) {
   .wid-fl {
     width: 100%;

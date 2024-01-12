@@ -18,6 +18,7 @@ import EditProfile from "./pages/editProfile";
 import VerifySucc from "./pages/verifySucc";
 import ResetPassword from "./pages/ResetPassword";
 import ForgotPassword from "./pages/forgotPassword";
+import BookListed from "./pages/bookedList.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -49,6 +50,7 @@ function App() {
         <Route index path={"/blog-det"} element={<BlogDetail />} />
         <Route index path={"/edit-das"} element={<EditProfile />} />
         <Route index path={"/user-verified"} element={<VerifySucc />} />
+        <Route index path={"/booked-list"} element={<BookListed />} />
         <Route
           index
           path={"/reset-passwrd/:email"}

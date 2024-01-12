@@ -7,7 +7,7 @@ import DetailCardFour from "./DetailCardFour";
 import BookFormMain from "./BookFormMain";
 import { useState } from "react";
 
-const RealDetail = () => {
+const RealDetail = ({ getData }) => {
   const [isBookOpen, SetisBookOpen] = useState(false);
 
   const handleIsBookOpen = () => {
@@ -19,17 +19,18 @@ const RealDetail = () => {
   return (
     <div className="detail-body-container my-2 px-[110px] relative">
       <div className="li-txt font-[18px] text-[#4a4949]">
-        <span className="text-[#fe598d]">Chicago</span> / Island
+        <span className="text-[#fe598d]">{getData?.country}</span> /{" "}
+        {getData?.city} / {getData?.county} / {getData?.area}
       </div>
       {isBookOpen && (
-        <div className="book-container fixed  z-30 bottom-5 right-5 bg-[#5f4c76] w-[40%] rounded-[10px]  p-10 pt-8">
+        <div className="book-container fixed  z-50 bottom-5 right-5 bg-[#5f4c76] w-[40%] rounded-[10px]  p-10 pt-8">
           <div className="clsz flex justify-end">
             <IoCloseSharp
               className=" text-white text-[26px] cursor-pointer"
               onClick={handleIsBookClose}
             />
           </div>
-          <BookFormMain />
+          <BookFormMain getData={getData} />
         </div>
       )}
       <div className="btn-book fixed right-10 z-20 top-[90%]">
@@ -42,20 +43,14 @@ const RealDetail = () => {
       </div>
       <div className="dec-container">
         <div className="des-ad font-bold text-[#3b3a3a]">Description</div>
-        <div className="desc-box text-[#595758]">
-          Enjoy a huge bedroom in a newly renovated 1000 sq feet, 3 bedroom,
-          apartment with all the amenities. It has a fully functional kitchen
-          with cookware and a bathroom with all the essentials and a dryer. The
-          apartment is located right in the middle of all the most convenient,
-          vibrant, and fun neighborhoods in NYC.
-        </div>
+        <div className="desc-box text-[#595758]">{getData?.description}</div>
       </div>
 
       <div className="details-row flex flex-wrap justify-between items-start w-full">
-        <DetailCard />
-        <DetailCardTree />
-        <DetailCardTwo />
-        <DetailCardFour />
+        <DetailCard getData={getData} />
+        <DetailCardTree getData={getData} />
+        <DetailCardTwo getData={getData} />
+        <DetailCardFour getData={getData} />
       </div>
     </div>
   );

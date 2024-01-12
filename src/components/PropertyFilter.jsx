@@ -11,38 +11,43 @@ import {
 } from "react-icons/fa";
 import FilterModal from "../modal/FilterModal";
 import { useState } from "react";
-const gdata = ["1 guest", "2 guests", "3 guests", "5 guests", "7 guests"];
+const gdata = ["1", "2", "3", "5", "7", "12"];
 const rdata = ["1 room", "2 rooms", "4 rooms", "5 rooms", "7 rooms"];
-const bdata = [
-  "1 bedroom",
-  "2 bedrooms",
-  "4 bedrooms",
-  "5 bedrooms",
-  "7 bedrooms",
-];
-const bedata = [
-  "1 bathroom",
-  "2 bathrooms",
-  "4 bathrooms",
-  "5 bathrooms",
-  "7 bathrooms",
-];
+const bdata = ["1", "2", "4", "5", "7"];
+const bedata = ["1", "2", "4", "5", "7"];
 const tdata = ["Apartment", "Dorm"];
-const sdata = ["Entire Room (8)", "Private room (4)", "Shared room (4)"];
+const sdata = ["Entire Room", "Private Room", "Shared Room"];
 
-const PropertyFilter = () => {
+const PropertyFilter = ({
+  locationText,
+  setLocationText,
+  priceFrom,
+  setpriceFrom,
+  priceTo,
+  setpriceTo,
+  checkInText,
+  setCheckInText,
+  checkOutText,
+  setCheckOutText,
+  guestText,
+  setGuestText,
+  selectedBath,
+  setSelectedBath,
+  selectedBed,
+  setSelectedBed,
+  selectedType,
+  setSelectedType,
+  selectedSize,
+  setSelectedSize,
+}) => {
   const [isGuest, setIsGuest] = useState(false);
-  const [isRoom, setIsRoom] = useState(false);
   const [isType, setIsType] = useState(false);
   const [isSize, setIsSize] = useState(false);
   const [isBed, setIsBed] = useState(false);
+  const [isRoom, setIsRoom] = useState(false);
   const [isBath, setIsBath] = useState(false);
   const [selectedGuests, setSelectedGuests] = useState(null);
   const [selectedRooms, setSelectedRooms] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedBed, setSelectedBed] = useState(null);
-  const [selectedBath, setSelectedBath] = useState(null);
 
   const handleIsBath = () => {
     setIsBath(!isBath);
@@ -89,6 +94,7 @@ const PropertyFilter = () => {
   };
   const handleIsGuestClose = (guests) => {
     setSelectedGuests(guests);
+    setGuestText(guests);
     setIsGuest(false);
   };
   return (
@@ -99,6 +105,8 @@ const PropertyFilter = () => {
           type="text"
           className="loc-inp outline-none w-[90%]"
           placeholder="Where are you going"
+          value={locationText}
+          onChange={(e) => setLocationText(e.target.value)}
         />
       </div>
       <div
@@ -106,7 +114,11 @@ const PropertyFilter = () => {
         onClick={handleIsGuest}
       >
         <FaRegUser className="main-icon" />
-        <div className="txt-slt">{selectedGuests || "Guests"}</div>
+        <div className="txt-slt">
+          {guestText || selectedGuests
+            ? `${guestText || selectedGuests} guests`
+            : "Guests"}
+        </div>
         {isGuest ? (
           <FaChevronUp className="clt-icon" />
         ) : (
@@ -166,7 +178,9 @@ const PropertyFilter = () => {
         onClick={handleIsBed}
       >
         <FaBed className="main-icon" />
-        <div className="txt-slt">{selectedBed || "Bedrooms"}</div>
+        <div className="txt-slt">
+          {selectedBed ? `${selectedBed} bedrooms` : "Bedrooms"}
+        </div>
         {isBed ? (
           <FaChevronUp className="clt-icon" />
         ) : (
@@ -181,7 +195,9 @@ const PropertyFilter = () => {
         onClick={handleIsBath}
       >
         <FaBath className="main-icon" />
-        <div className="txt-slt">{selectedBath || "Bathrooms"}</div>
+        <div className="txt-slt">
+          {selectedBath ? `${selectedBath} bathrooms` : "Bathrooms"}
+        </div>
         {isBath ? (
           <FaChevronUp className="clt-icon" />
         ) : (
@@ -196,12 +212,16 @@ const PropertyFilter = () => {
           type="text"
           className="prc-ran-inp outline-none px-2"
           placeholder="From: $0"
+          value={priceFrom}
+          onChange={(e) => setpriceFrom(e.target.value)}
         />
         <div className="icon-prop">-</div>
         <input
           type="text"
           className="prc-ran-inp outline-none px-2"
           placeholder="To: $600"
+          value={priceTo}
+          onChange={(e) => setpriceTo(e.target.value)}
         />
       </div>
     </div>

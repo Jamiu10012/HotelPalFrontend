@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-const DetailCard = () => {
+const DetailCard = ({ getData }) => {
   const data = [
     {
       title: "Price Details",
@@ -69,18 +69,23 @@ const DetailCard = () => {
 
       {isclick && (
         <>
-          <p className="mb-3 font-normal text-black">Price per night: $ 500</p>
           <p className="mb-3 font-normal text-black">
-            Price per night (30d+): $ 250
+            Price per night: {getData?.currency} {getData?.price_per_night}
           </p>
           <p className="mb-3 font-normal text-black">
-            City Tax Fee: $ 100 Single Fee
+            Price per night (7d+): {getData?.currency}{" "}
+            {getData?.price_per_night_week}
           </p>
           <p className="mb-3 font-normal text-black">
-            Price per night (7d+): $ 300
+            Price per night (30d+): {getData?.currency}{" "}
+            {getData?.price_per_night_month}
           </p>
           <p className="mb-3 font-normal text-black">
-            Cleaning Fee: $ 150 Single Fee
+            City Tax Fee: {getData?.currency} {getData?.tax_fee} Single Fee
+          </p>
+
+          <p className="mb-3 font-normal text-black">
+            Cleaning Fee: {getData?.currency} {getData?.cleaning_fee} Single Fee
           </p>
         </>
       )}

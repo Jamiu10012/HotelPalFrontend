@@ -1,10 +1,29 @@
 import { Link } from "react-router-dom";
 import "../App.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../Apis/getUser";
 
 function Navbar() {
   const [isMenu, setIsMenu] = useState(false);
+  const [getData, setGetData] = useState(null);
+  const token = localStorage.getItem("authToken");
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserById(userId, token);
+        setGetData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
 
   const handleIsMenuOpen = () => {
     setIsMenu(true);
@@ -49,7 +68,7 @@ function Navbar() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-6 h-6 cursor-pointer"
+            className="w-6 h-6 cursor-pointer menu-v"
             onClick={handleIsMenuOpen}
           >
             <path
@@ -59,23 +78,36 @@ function Navbar() {
             />
           </svg>
 
-          <Link
-            to={"/login"}
-            className="bg-primary_pink text-white rounded-full border border-primary_pink"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6"
+          {getData?.user?.profile_picture ? (
+            <Link
+              to={"/dash"}
+              className="bg-primary_pink text-white rounded-full border border-primary_pink"
             >
-              <path
-                fillRule="evenodd"
-                d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
-                clipRule="evenodd"
+              <img
+                src={getData?.user?.profile_picture}
+                alt=""
+                className="w-8 h-8 rounded-full"
               />
-            </svg>
-          </Link>
+            </Link>
+          ) : (
+            <Link
+              to={"/login"}
+              className="bg-primary_pink text-white rounded-full border border-primary_pink"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
+          )}
         </div>
       </nav>
     </header>
