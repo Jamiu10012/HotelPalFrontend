@@ -78,7 +78,7 @@ function Navbar() {
             />
           </svg>
 
-          {getData?.user?.profile_picture ? (
+          {token || getData?.user?.profile_picture ? (
             <Link
               to={"/dash"}
               className="bg-primary_pink text-white rounded-full border border-primary_pink"

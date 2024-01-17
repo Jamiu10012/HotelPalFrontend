@@ -33,6 +33,12 @@ const dataItem = [
   },
 ];
 
+const logout = () => {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("userId");
+  window.location.reload();
+};
+
 const Sidebar = () => {
   const navigate = useNavigate();
   const [getData, setGetData] = useState(null);
@@ -81,7 +87,7 @@ const Sidebar = () => {
         );
       })}
 
-      <div className="Link dash-list not-active">
+      <div className="Link dash-list not-active" onClick={logout}>
         <div className="icon">
           <HiOutlineLogout />
         </div>

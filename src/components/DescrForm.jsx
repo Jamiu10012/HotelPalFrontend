@@ -160,7 +160,7 @@ const DescrForm = ({ handlePriceClick, formData, handleInputChange }) => {
             >
               <option>Select Room Type</option>
               <option value="Entire Room">Entire Room</option>
-              <option value="Private">Private</option>
+              <option value="Private">Private Room</option>
               <option value="Shared Room">Shared Room</option>
             </select>
           </div>

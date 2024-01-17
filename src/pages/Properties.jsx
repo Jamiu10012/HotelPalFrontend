@@ -2,7 +2,7 @@ import CardCol from "../components/CardCol";
 import "../assets/css/property.css";
 import PropertyFilter from "../components/PropertyFilter";
 import { useEffect, useState } from "react";
-import { getPropertiesSix } from "../../Apis/ListProp";
+import { getAllProperties } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
@@ -26,7 +26,7 @@ const Properties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getPropertiesSix();
+        const data = await getAllProperties();
         setPropertyData(data);
       } catch (error) {
         console.error("Error fetching property data:", error);
@@ -140,7 +140,7 @@ const Properties = () => {
         />
       </div>
 
-      <div className="card-row-container flex gap-10   flex-wrap p-20">
+      <div className="card-row-container flex gap-10 justify-between  flex-wrap p-20">
         {filteredProperties?.length > 0 ? (
           filteredProperties?.map((property) => (
             <CardCol key={property._id} property={property} />

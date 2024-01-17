@@ -70,6 +70,20 @@ export const UpdateProperty = async (
 
 export const getPropertiesSix = async () => {
   try {
+    const response = await fetch(`${API_URL}/listing/first-six-listings`);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch properties data");
+    }
+  } catch (error) {
+    console.error("Error fetching properties data", error);
+    throw error;
+  }
+};
+export const getAllProperties = async () => {
+  try {
     const response = await fetch(`${API_URL}/listing/all-listings`);
     if (response.ok) {
       const data = await response.json();
@@ -82,7 +96,6 @@ export const getPropertiesSix = async () => {
     throw error;
   }
 };
-
 export const getPropById = async (propId) => {
   try {
     const response = await fetch(`${API_URL}/listing/${propId}`);

@@ -70,7 +70,7 @@
   }
   .boo-cont {
     border-radius: 20px !important;
-    /* bottom: -45% !important; */
+    bottom: -10% !important;
   }
   .inp-book {
     width: 100% !important;
@@ -267,7 +267,8 @@
     font-size: 14px;
   }
   .lihe {
-    font-size: 25px;
+    font-size: 18px;
+    margin-top: -50px !important;
   }
   .frst-loc {
     font-size: 13px !important;
@@ -276,7 +277,8 @@
     height: 55vh !important;
   }
   .rd-wdt-cont {
-    font-size: 12px !important;
+    font-size: 10px !important;
+    margin-top: -10px !important;
   }
   .over-cont {
     font-size: 13px !important;

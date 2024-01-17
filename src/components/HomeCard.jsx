@@ -23,7 +23,7 @@ const HomeCard = () => {
 
     fetchData();
   }, []);
-  console.log(propertyData);
+  // console.log(propertyData);
   return (
     <div className="card-box-all  mt-10 p-10 px-20">
       <div className="text-[25px] font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">

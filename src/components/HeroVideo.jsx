@@ -10,8 +10,8 @@ const HeroVideo = () => {
         Your browser does not support the video tag.
       </video>
       <div className="hero-text absolute top-0 left-4 md:left-12 w-full md:w-[100%] lg:w-[100%] flex justify-center items-start flex-col h-full z-10 text-container">
-        <div className="text-box relative w-full md:w-[45%] lg:w-[40%] p-4 md:p-8 ">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-7 md:leading-9 lg:leading-40 mb-4 md:mb-8 lihe text-white ">
+        <div className="text-box relative w-[90%] md:w-[45%] lg:w-[50%] p-4 md:p-8 ">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold leading-7 md:leading-9 lg:leading-40 mb-4 md:mb-8 lihe text-white ">
             A better Vacation <br /> Experience
           </h1>
           <p className=" rd-wdt-cont text-white ">
