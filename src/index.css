@@ -49,3 +49,27 @@ video {
 .card-prop {
   cursor: pointer;
 }
+.csd {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+}
+.css-xelq0e-MuiPickerStaticWrapper-content {
+  /* background: yellowgreen; */
+  z-index: 11143333;
+  height: 100%;
+}
+.css-j88s13-MuiPickersToolbar-root-MuiDatePickerToolbar-root {
+  display: none !important;
+}
+.css-188yni7-MuiPickersDay-root {
+  visibility: visible !important;
+  display: initial !important;
+}
+.cls-cnn {
+  font-size: 16px;
+  color: red;
+}
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  display: none !important;
+}
