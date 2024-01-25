@@ -3,36 +3,44 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
 import { CreateBooking } from "../../Apis/Booking";
 import { ToastContainer, toast } from "react-toastify";
+import format from "date-fns/format";
+import Calendar from "./Calendar";
 
 const BookFormMain = ({ getData }) => {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [value, setValue] = useState("YYYY-MM-DD");
+  const [selectedDate, setSelectedDate] = useState(value);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
-  const [selectedDateOut, setSelectedDateOut] = useState(null);
+  const [valueOut, setValueOut] = useState("YYYY-MM-DD");
+
+  const [selectedDateOut, setSelectedDateOut] = useState(valueOut);
   const [isDatePickerVisibleOut, setDatePickerVisibleOut] = useState(false);
   const [dateDifference, setDateDifference] = useState(null);
+
   const [price, setPrice] = useState("");
   const token = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
   const [sGuest, setSGuest] = useState("");
-
-  const handleDateChangeOut = (event) => {
-    const newDateOut = event.target.value;
+  console.log(valueOut);
+  const handleDateChangeOut = (valueOut) => {
+    const newDateOut = valueOut;
     setSelectedDateOut(newDateOut);
     calculateDateDifference(selectedDate, newDateOut);
+    setDatePickerVisibleOut(false);
   };
 
   const handleCheckInClickOut = () => {
-    setDatePickerVisibleOut(true);
+    setDatePickerVisibleOut(!isDatePickerVisibleOut);
   };
 
-  const handleDateChange = (event) => {
-    const newDate = event.target.value;
+  const handleDateChange = (value) => {
+    const newDate = value;
     setSelectedDate(newDate);
     calculateDateDifference(newDate, selectedDateOut);
+    setDatePickerVisible(false);
   };
 
   const handleCheckInClick = () => {
-    setDatePickerVisible(true);
+    setDatePickerVisible(!isDatePickerVisible);
   };
 
   const propId = getData?._id;
@@ -60,18 +68,23 @@ const BookFormMain = ({ getData }) => {
 
   const totalPrice =
     Number(getData?.cleaning_fee) + Number(getData?.tax_fee) + rentalp;
+  const formattedDate =
+    selectedDate !== "YYYY-MM-DD" ? format(value, "yyyy-MM-dd") : "";
+  const formattedDateOut =
+    selectedDateOut !== "YYYY-MM-DD" ? format(valueOut, "yyyy-MM-dd") : "";
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      checkInDate: selectedDate,
-      checkOutDate: selectedDateOut,
+      checkInDate: formattedDate,
+      checkOutDate: formattedDateOut,
       roomFee: price,
       numberOfGuests: sGuest,
       totalPrice: totalPrice,
     };
 
-    console.log(formData);
+    console.log(formData.checkInDate);
+    console.log(formData.checkOutDate);
 
     try {
       const result = await CreateBooking(formData, userId, token, propId);
@@ -83,18 +96,18 @@ const BookFormMain = ({ getData }) => {
     }
   };
 
+  console.log(formattedDate);
+  console.log(formattedDateOut);
+
   return (
     <div className="bookfm-bx pt-5">
       <form action="" onSubmit={handleFormSubmit}>
-        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#fff] px-3 py-2">
+        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#fff] px-3 py-2 text-[#fff]">
           <FaCalendarDays className="text-[20px] text-[#fff]" />
-          {isDatePickerVisible ? (
-            <input
-              type="date"
-              onChange={handleDateChange}
-              value={selectedDate || "Check in"}
-              className=" outline-none bg-transparent text-white"
-            />
+          {formattedDate ? (
+            <div className="dat-tst" onClick={handleCheckInClick}>
+              {formattedDate}
+            </div>
           ) : (
             <span
               onClick={handleCheckInClick}
@@ -104,15 +117,21 @@ const BookFormMain = ({ getData }) => {
             </span>
           )}
         </div>
-        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#fff] px-3 py-2">
-          <FaCalendarDays className="text-[20px] text-[#fff]" />
-          {isDatePickerVisibleOut ? (
-            <input
-              type="date"
-              onChange={handleDateChangeOut}
-              value={selectedDateOut || ""}
-              className=" outline-none bg-transparent text-white"
+        {isDatePickerVisible && (
+          <div className="calend-box">
+            <Calendar
+              value={value}
+              setValue={setValue}
+              handleDateChange={handleDateChange}
             />
+          </div>
+        )}
+        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center text-[#fff] border border-[#fff] px-3 py-2">
+          <FaCalendarDays className="text-[20px] text-[#fff]" />
+          {formattedDateOut ? (
+            <div className="dat-tst" onClick={handleCheckInClickOut}>
+              {formattedDateOut}
+            </div>
           ) : (
             <span
               onClick={handleCheckInClickOut}
@@ -122,6 +141,16 @@ const BookFormMain = ({ getData }) => {
             </span>
           )}
         </div>
+        {isDatePickerVisibleOut && (
+          <div className="calend-box">
+            <Calendar
+              value={valueOut}
+              setValue={setValueOut}
+              handleDateChange={handleDateChangeOut}
+            />
+          </div>
+        )}
+
         <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#fff] px-3 py-2 ">
           <IoMdPerson className="text-[20px] text-[#fff]" />
 
@@ -130,7 +159,7 @@ const BookFormMain = ({ getData }) => {
               type="text"
               name="sGuest"
               id="sGuest"
-              className="block desc-input py-3 px-0 w-full text-sm text-gray-900 bg-transparent text-white  outline-none caret-white  peer"
+              className="block desc-input py-3 px-0 w-full text-sm  bg-transparent text-white  outline-none caret-white  peer"
               placeholder=" "
               required
               value={sGuest}

@@ -24,7 +24,7 @@ const PropDetail = () => {
       fetchPropData();
     }
   }, [propId]);
-  console.log(getData);
+  console.log(propId);
   if (!getData) {
     return <div></div>; // Add a loading state or spinner here
   }
