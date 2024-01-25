@@ -174,7 +174,7 @@ const BookFormMain = ({ getData }) => {
           </div>
         </div>
 
-        {dateDifference && (
+        {dateDifference > 0 && (
           <div className="box-container">
             <div className="cal-price-box">
               <div className="left-pric">
