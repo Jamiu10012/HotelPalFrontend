@@ -21,7 +21,7 @@ function BookingForm() {
   const handleCheckOutChange = (event) => {
     setCheckOut(event.target.value);
   };
-  console.log(guest);
+  // console.log(guest);
 
   const gotoProp = () => {
     navigate(`/properties?l=${location}&n=${checkIn}&o=${checkOut}&g=${guest}`);

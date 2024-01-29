@@ -3,6 +3,7 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
 import { CreateBooking } from "../../Apis/Booking";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import format from "date-fns/format";
 import Calendar from "./Calendar";
 
@@ -20,7 +21,7 @@ const BookFormMain = ({ getData }) => {
   const token = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
   const [sGuest, setSGuest] = useState("");
-  console.log(valueOut);
+  // console.log(valueOut);
   const handleDateChangeOut = (valueOut) => {
     const newDateOut = valueOut;
     setSelectedDateOut(newDateOut);
@@ -70,6 +71,11 @@ const BookFormMain = ({ getData }) => {
     Number(getData?.cleaning_fee) + Number(getData?.tax_fee) + rentalp;
   const formattedDate =
     selectedDate !== "YYYY-MM-DD" ? format(value, "yyyy-MM-dd") : "";
+  const currentDate = new Date(); // Current date
+
+  if (formattedDate && new Date(formattedDate) < currentDate) {
+    toast.error("Date is not available");
+  }
   const formattedDateOut =
     selectedDateOut !== "YYYY-MM-DD" ? format(valueOut, "yyyy-MM-dd") : "";
 
@@ -83,9 +89,6 @@ const BookFormMain = ({ getData }) => {
       totalPrice: totalPrice,
     };
 
-    console.log(formData.checkInDate);
-    console.log(formData.checkOutDate);
-
     try {
       const result = await CreateBooking(formData, userId, token, propId);
       toast.success("Booked Successfully!!!");
@@ -95,9 +98,6 @@ const BookFormMain = ({ getData }) => {
       toast.error(error.message);
     }
   };
-
-  console.log(formattedDate);
-  console.log(formattedDateOut);
 
   return (
     <div className="bookfm-bx pt-5">
@@ -123,6 +123,7 @@ const BookFormMain = ({ getData }) => {
               value={value}
               setValue={setValue}
               handleDateChange={handleDateChange}
+              booked={getData?.booked}
             />
           </div>
         )}
@@ -147,6 +148,7 @@ const BookFormMain = ({ getData }) => {
               value={valueOut}
               setValue={setValueOut}
               handleDateChange={handleDateChangeOut}
+              booked={getData?.booked}
             />
           </div>
         )}

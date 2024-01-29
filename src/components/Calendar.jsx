@@ -8,30 +8,35 @@ import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 // import CloseIcon from "@mui/icons-material/Close";
 import { IoCloseSharp } from "react-icons/io5";
 import format from "date-fns/format";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const startDate = new Date("2024-01-27");
-const endDate = new Date("2024-02-02");
-const Bdates = [];
-
-// Iterate through the range of dates and push each date to the dates array
-for (
-  let currentDate = startDate;
-  currentDate <= endDate;
-  currentDate.setDate(currentDate.getDate() + 1)
-) {
-  // Convert the current date to the desired format (YYYY-MM-DD)
-  const formattedDate = currentDate.toISOString().split("T")[0];
-
-  // Push the formatted date to the dates array
-  Bdates.push(formattedDate);
-}
-
-// console.log(Bdates);
-
-const dates = Bdates;
-
-const Calendar = ({ value, setValue, handleDateChange }) => {
+const Calendar = ({ value, setValue, handleDateChange, booked }) => {
   const [highlightedDays, setHighlightedDays] = useState([]);
+
+  const firstFrom = booked.length >= 0 ? booked[0].from : null;
+
+  // Get the 'to' value of the last object
+  const lastTo = booked.length >= 0 ? booked[booked.length - 1].to : null;
+
+  const startDate = new Date(firstFrom);
+  const endDate = new Date(lastTo);
+  const Bdates = [];
+
+  // Iterate through the range of dates and push each date to the dates array
+  for (
+    let currentDate = startDate;
+    currentDate <= endDate;
+    currentDate.setDate(currentDate.getDate() + 1)
+  ) {
+    // Convert the current date to the desired format (YYYY-MM-DD)
+    const formattedDate = currentDate.toISOString().split("T")[0];
+
+    // Push the formatted date to the dates array
+    Bdates.push(formattedDate);
+  }
+
+  const dates = Bdates;
 
   useEffect(() => {
     // Convert date strings to Date objects and extract day and month numbers
@@ -45,7 +50,6 @@ const Calendar = ({ value, setValue, handleDateChange }) => {
 
   const formattedDate =
     value !== "YYYY-MM-DD" ? format(value, "yyyy-MM-dd") : "";
-  //   console.log(highlightedDays);
 
   return (
     <div className="csd">
@@ -58,7 +62,7 @@ const Calendar = ({ value, setValue, handleDateChange }) => {
           onChange={(newValue) => {
             const selectedDate = format(newValue, "yyyy-MM-dd");
             if (Bdates.includes(selectedDate)) {
-              console.log(`Booked already ${newValue}`);
+              toast.error("Is not available");
             } else {
               setValue(newValue);
               handleDateChange(newValue);
@@ -74,11 +78,7 @@ const Calendar = ({ value, setValue, handleDateChange }) => {
                 highlightedDay.day === day.getDate() &&
                 highlightedDay.month === day.getMonth()
             );
-            // const isSelectedDate = Bdates.includes(format(day, "yyyy-MM-dd"));
-            // console.log(isSelectedDate);
-            // if (isSelectedDate) {
-            //   console.log("Booked already");
-            // }
+
             return (
               <Badge
                 key={day.toString()}
@@ -95,6 +95,7 @@ const Calendar = ({ value, setValue, handleDateChange }) => {
           }}
         />
       </LocalizationProvider>
+      <ToastContainer />
     </div>
   );
 };

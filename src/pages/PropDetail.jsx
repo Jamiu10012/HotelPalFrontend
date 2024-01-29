@@ -24,13 +24,13 @@ const PropDetail = () => {
       fetchPropData();
     }
   }, [propId]);
-  console.log(propId);
+  // console.log(propId);
   if (!getData) {
     return <div></div>; // Add a loading state or spinner here
   }
 
   const combinedImages = [getData.cover_image, ...getData.rest_images];
-  console.log(combinedImages);
+  // console.log(combinedImages);
   return (
     <div className="detail-prop-container">
       <TopDetail combinedImages={combinedImages} />

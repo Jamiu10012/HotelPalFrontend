@@ -9,9 +9,18 @@ import { useState } from "react";
 
 const RealDetail = ({ getData }) => {
   const [isBookOpen, SetisBookOpen] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  const token = localStorage.getItem("authToken");
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
 
   const handleIsBookOpen = () => {
     SetisBookOpen(true);
+    if (token === null) {
+      window.location.href = "/login";
+    }
   };
   const handleIsBookClose = () => {
     SetisBookOpen(false);
@@ -43,7 +52,18 @@ const RealDetail = ({ getData }) => {
       </div>
       <div className="dec-container">
         <div className="des-ad font-bold text-[#3b3a3a]">Description</div>
-        <div className="desc-box text-[#595758]">{getData?.description}</div>
+        <div className="desc-box text-[#595758]">
+          {showFullDescription
+            ? getData?.description
+            : `${getData?.description.slice(0, 350)}...`}
+          <div
+            className=""
+            onClick={toggleDescription}
+            style={{ cursor: "pointer", color: "#fe598d" }}
+          >
+            {showFullDescription ? "Show Less" : "Show More"}
+          </div>
+        </div>
       </div>
 
       <div className="details-row flex flex-wrap justify-between items-start w-full">
