@@ -49,7 +49,9 @@ const ListProp = () => {
     outdor_facilities: "",
     amenties: [],
   });
-
+  if (token === null) {
+    window.location.href = "/login";
+  }
   const handleAmentyClick = (e) => {
     e.preventDefault();
     if (
