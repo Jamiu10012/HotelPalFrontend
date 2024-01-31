@@ -54,7 +54,67 @@
 .right-about-box {
   width: 50%;
 }
-
+.card-immg {
+  min-height: 200px;
+  background: rgb(190, 190, 190);
+  border-radius: 7px 7px 0 0;
+}
+.skeleton {
+  overflow: hidden;
+}
+.skeleton .txt-cd {
+  background: rgb(190, 190, 190);
+  color: rgb(190, 190, 190) !important;
+}
+.skeleton span {
+  background: rgb(190, 190, 190);
+  width: 80%;
+  color: rgb(190, 190, 190) !important;
+}
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+.bigskl {
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+.bigskl .card-immg {
+  width: 100%;
+  height: 80vh;
+  border-radius: 0 !important;
+}
+.bigskl .txt-cd {
+  height: 100px;
+  width: 90%;
+}
+.bigskl span {
+  width: 70%;
+  height: 50px;
+}
+.loading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    rgb(216, 216, 216),
+    transparent
+  );
+  animation: loading-ans 1s linear infinite;
+}
+@keyframes loading-ans {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 @media only screen and (max-width: 1350px) {
   .book-ser-form {
     flex-direction: column;

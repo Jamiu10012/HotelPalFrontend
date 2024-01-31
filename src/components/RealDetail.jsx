@@ -6,12 +6,16 @@ import DetailCardTwo from "./DetailCardTwo";
 import DetailCardFour from "./DetailCardFour";
 import BookFormMain from "./BookFormMain";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const RealDetail = ({ getData }) => {
   const [isBookOpen, SetisBookOpen] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const { token: newtoken } = useSelector((state) => state.user);
+  const myToken = useSelector((state) => state.token);
   const token = localStorage.getItem("authToken");
-
+  console.log("myt", myToken);
+  console.log("new", newtoken);
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };

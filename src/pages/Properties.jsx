@@ -4,6 +4,7 @@ import PropertyFilter from "../components/PropertyFilter";
 import { useEffect, useState } from "react";
 import { getAllProperties } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
+import Skeleton from "../components/Skeleton";
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
   const [searchParams] = useSearchParams();
@@ -141,13 +142,11 @@ const Properties = () => {
       </div>
 
       <div className="card-row-container flex gap-10 justify-between  flex-wrap p-20">
-        {filteredProperties?.length > 0 ? (
-          filteredProperties?.map((property) => (
-            <CardCol key={property._id} property={property} />
-          ))
-        ) : (
-          <p>No properties found.</p>
-        )}
+        {filteredProperties?.length > 0
+          ? filteredProperties?.map((property) => (
+              <CardCol key={property._id} property={property} />
+            ))
+          : [1, 2, 3, 4, 5, 6].map((_, id) => <Skeleton key={id} />)}
       </div>
     </>
   );

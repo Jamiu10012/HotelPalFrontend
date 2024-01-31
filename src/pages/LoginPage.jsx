@@ -9,8 +9,11 @@ import { useState } from "react";
 import { loginUser } from "../../Apis/Auth";
 import { API_URL } from "../../ProtectedRoute";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { storeUser } from "../Store/userReducer";
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,6 +34,7 @@ function LoginPage() {
       // console.log(result.token);
       localStorage.setItem("authToken", result.token);
       localStorage.setItem("userId", result?.user?._id);
+      dispatch(storeUser({ token: result.token }));
       toast.success("Login Successfully!!!");
       const timeoutId = setTimeout(() => {
         window.location.href = "/";

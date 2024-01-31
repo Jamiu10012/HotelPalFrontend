@@ -71,7 +71,7 @@ export const forgotPass = async (userData, successMessage) => {
     toast.success(successMessage);
     return data;
   } catch (error) {
-    console.error("Error logins user:", error);
+    console.error("Error forget user:", error.message);
     toast.error(error);
     // toast.error("", error);
     throw error;

@@ -15,7 +15,7 @@ const CardCol = ({ property }) => {
   };
   return (
     <div
-      className="card-prop w-[400px] bg-white border border-gray-200 rounded-lg shadow dark:bg-[#fff] dark:border-[#fe598d] relative"
+      className="card-prop w-[400px] bg-white border rounded-lg shadow  border-[#fe598d] relative"
       onClick={gotoProp}
     >
       <img className="rounded-t-lg" src={property.cover_image} alt="" />
@@ -33,11 +33,11 @@ const CardCol = ({ property }) => {
       </div>
       <div className="p-2">
         <Link to={"/propdet"}>
-          <h5 className="txt-cd mb-2 text-[16px] font-bold tracking-tight text-gray-900 dark:text-gray-700">
+          <h5 className="txt-cd mb-2 text-[16px] font-bold tracking-tight text-gray-700 ">
             {property.title}
           </h5>
         </Link>
-        <div className="body-box mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <div className="body-box mb-3 font-normal text-gray-400">
           <div className="flex items-center gap-1 mb-2">
             <IoLocation />
             <span> {property.country}</span>

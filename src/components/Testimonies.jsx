@@ -102,7 +102,7 @@ const Testimonies = () => {
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
                 alt="profile picture"
               />
-              <div className="space-y-0.5 font-medium dark:text-white text-left">
+              <div className="space-y-0.5 font-medium text-white text-left">
                 <div>Jese Leos</div>
                 <div className="text-sm font-light text-gray-400">
                   Software Engineer at Facebook
