@@ -21,13 +21,17 @@ function BookedList() {
       fetchBookingData();
     }
   }, [userId]);
-
+  if (getData?.length === 0) {
+    return <div className="load-txt">You don't have anything yet...</div>;
+  }
   // console.log(getData);
   return (
     <div className="profile-main-container bord-pro p-4 ">
-      {getData?.map((item, index) => (
-        <BookedCard key={index} data={item} />
-      ))}
+      {getData ? (
+        getData?.map((item, index) => <BookedCard key={index} data={item} />)
+      ) : (
+        <div className="load-txt">Loading...</div>
+      )}
     </div>
   );
 }
