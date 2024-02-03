@@ -32,7 +32,7 @@ const HomeCard = () => {
       </div>
       <div className="card-row-container flex gap-4 justify-between flex-wrap">
         {propertyData !== null
-          ? propertyData.map((property) => (
+          ? propertyData?.map((property) => (
               <CardCol key={property._id} property={property} />
             ))
           : [1, 2, 3, 4, 5, 6].map((_, id) => <Skeleton key={id} />)}

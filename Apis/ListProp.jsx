@@ -110,3 +110,21 @@ export const getPropById = async (propId) => {
     throw error;
   }
 };
+export const getPropByUserId = async (userId, token) => {
+  try {
+    const response = await fetch(`${API_URL}/listing/user/${userId}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch property data");
+    }
+  } catch (error) {
+    console.error("Error fetching property data", error);
+    throw error;
+  }
+};

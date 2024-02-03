@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import BookedCard from "./BookedCard";
-import { getBookingByUserId } from "../../../Apis/Booking";
+import { getBookingByPropertyOwnerId } from "../../../Apis/Booking";
+import MyBookCard from "./MyBookCard";
 
-function BookedList() {
+function MyBookedList() {
   const [getData, setGetData] = useState(null);
   const token = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
@@ -10,7 +10,7 @@ function BookedList() {
   useEffect(() => {
     const fetchBookingData = async () => {
       try {
-        const data = await getBookingByUserId(userId, token);
+        const data = await getBookingByPropertyOwnerId(userId, token);
         setGetData(data);
       } catch (error) {
         console.error(error);
@@ -22,14 +22,14 @@ function BookedList() {
     }
   }, [userId]);
 
-  // console.log(getData);
+  // console.log(userId);
   return (
     <div className="profile-main-container bord-pro p-4 ">
       {getData?.map((item, index) => (
-        <BookedCard key={index} data={item} />
+        <MyBookCard key={index} data={item} />
       ))}
     </div>
   );
 }
 
-export default BookedList;
+export default MyBookedList;

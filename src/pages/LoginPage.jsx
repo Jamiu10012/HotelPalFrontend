@@ -56,11 +56,30 @@ function LoginPage() {
             profile_picture: result.user.photoURL,
           })
           .then((res) => {
-            console.log(res);
+            // console.log(res);
+            if (
+              res &&
+              res.data &&
+              res.data.token &&
+              res.data.user &&
+              res.data.user._id
+            ) {
+              localStorage.setItem("authToken", res.data.token);
+              localStorage.setItem("userId", res.data.user._id);
+              toast.success("Login Successfully!!!");
+
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 3000);
+            } else {
+              console.error("Invalid response format:", res);
+              toast.error("Something went wrong");
+            }
           });
       })
       .catch((error) => {
         console.error(error);
+        toast.error("Something went wrong");
       });
   };
 

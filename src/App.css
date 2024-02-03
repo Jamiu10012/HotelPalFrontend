@@ -28,6 +28,28 @@
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   display: none !important;
 }
+.side-ske {
+  background: rgb(190, 190, 190) !important;
+  box-shadow: none !important;
+  border-radius: 20px;
+  border: 0px solid #eef7ff !important;
+}
+.small-ls-ls {
+  background: rgb(190, 190, 190) !important;
+  color: rgb(190, 190, 190) !important;
+  border: none !important;
+}
+.ske-das-top {
+  background: rgb(190, 190, 190) !important;
+  width: 100%;
+  border: none !important;
+  min-height: 200px;
+}
+.eas-col-das {
+  box-shadow: none !important;
+  border: none !important;
+  background: rgb(190, 190, 190) !important;
+}
 @media only screen and (max-width: 1000px) {
   .menu-v {
     display: initial;

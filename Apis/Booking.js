@@ -59,3 +59,25 @@ export const getBookingByUserId = async (userId, token) => {
     throw error;
   }
 };
+export const getBookingByPropertyOwnerId = async (ownerId, token) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/booking/propertyOwner/${ownerId}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+
+      return data;
+    } else {
+      throw new Error("Failed to fetch booking data");
+    }
+  } catch (error) {
+    console.error("Error fetching booking data", error);
+    throw error;
+  }
+};

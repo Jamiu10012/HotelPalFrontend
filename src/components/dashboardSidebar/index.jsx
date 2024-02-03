@@ -9,6 +9,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../../Apis/getUser";
 import { RiReservedFill } from "react-icons/ri";
+import SideSkeleton from "./SideSkeleton";
 
 const dataItem = [
   {
@@ -21,14 +22,19 @@ const dataItem = [
     to: "/edit-das",
     icon: <FiEdit />,
   },
-  // {
-  //   label: "My Properties",
-  //   to: "/dash",
-  //   icon: <AiOutlineFileText />,
-  // },
   {
     label: "My Reservation",
     to: "/booked-list",
+    icon: <RiReservedFill />,
+  },
+  {
+    label: "My Properties",
+    to: "/myprop",
+    icon: <AiOutlineFileText />,
+  },
+  {
+    label: "My Booking",
+    to: "/mybooking",
     icon: <RiReservedFill />,
   },
 ];
@@ -61,39 +67,45 @@ const Sidebar = () => {
   }, [userId]);
   const avatar = "/images/hero-slide-01.webp";
   return (
-    <div className="profile-sidebar">
-      <div className="profile-img-container">
-        <img src={getData?.user?.profile_picture || avatar} alt="profile" />
-        <div className="profile-name">
-          <h5>{getData?.user?.username}</h5>
+    <>
+      {getData ? (
+        <div className="profile-sidebar mb-4">
+          <div className="profile-img-container">
+            <img src={getData?.user?.profile_picture || avatar} alt="profile" />
+            <div className="profile-name">
+              <h5>{getData?.user?.username}</h5>
+            </div>
+          </div>
+
+          {dataItem.map((item, key) => {
+            return (
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "Link dash-list active-side-nav"
+                    : "Link dash-list not-active"
+                }
+                key={key}
+                to={item.to}
+              >
+                <div className="icon">{item.icon}</div>
+
+                {item.label}
+              </NavLink>
+            );
+          })}
+
+          <div className="Link dash-list not-active" onClick={logout}>
+            <div className="icon">
+              <HiOutlineLogout />
+            </div>
+            Logout
+          </div>
         </div>
-      </div>
-
-      {dataItem.map((item, key) => {
-        return (
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? "Link dash-list active-side-nav"
-                : "Link dash-list not-active"
-            }
-            key={key}
-            to={item.to}
-          >
-            <div className="icon">{item.icon}</div>
-
-            {item.label}
-          </NavLink>
-        );
-      })}
-
-      <div className="Link dash-list not-active" onClick={logout}>
-        <div className="icon">
-          <HiOutlineLogout />
-        </div>
-        Logout
-      </div>
-    </div>
+      ) : (
+        <SideSkeleton />
+      )}
+    </>
   );
 };
 

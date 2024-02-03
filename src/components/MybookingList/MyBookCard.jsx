@@ -1,6 +1,6 @@
 import axios from "axios";
 import bbb from "../../assets/images/ero1.jpg";
-const BookedCard = ({ data }) => {
+const MyBookCard = ({ data }) => {
   const checkInDate = data?.checkInDate;
   const formattedCheckInDate = new Date(checkInDate).toLocaleDateString(
     "en-US",
@@ -62,4 +62,4 @@ const BookedCard = ({ data }) => {
   );
 };
 
-export default BookedCard;
+export default MyBookCard;
