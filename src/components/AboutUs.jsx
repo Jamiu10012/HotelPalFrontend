@@ -7,6 +7,9 @@ const AboutUs = () => {
   const gotoSign = () => {
     navigate("register");
   };
+  const gotoblog = () => {
+    navigate("/all-blog");
+  };
   return (
     <div className="about-us-container flex gap-5 p-20 items-center">
       <div className="left-about-box">
@@ -28,7 +31,10 @@ const AboutUs = () => {
           >
             Join Us
           </button>
-          <button className="about-btn w-[110px] rounded bg-[#fff] text-[#fe598d] h-[35px] hover:bg-[#fe598d] hover:text-[#fff]">
+          <button
+            className="about-btn w-[110px] rounded bg-[#fff] text-[#fe598d] h-[35px] hover:bg-[#fe598d] hover:text-[#fff]"
+            onClick={gotoblog}
+          >
             Learn More
           </button>
         </div>

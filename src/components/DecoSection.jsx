@@ -9,6 +9,9 @@ function DecoSection() {
   const gotoSign = () => {
     navigate("register");
   };
+  const gotoblog = () => {
+    navigate("/all-blog");
+  };
   const data = [
     {
       img: "https://mapro.s3.amazonaws.com/37/584c89ba14645134ec2a8513a167d8c4d0ed8867-1220.jpg",
@@ -80,7 +83,10 @@ function DecoSection() {
               >
                 Become a host
               </button>
-              <button className="about-btn w-[110px] rounded bg-[#fff]  text-[#fe598d] h-[35px] hover:bg-[#fe598d] hover:text-[#fff]">
+              <button
+                className="about-btn w-[110px] rounded bg-[#fff]  text-[#fe598d] h-[35px] hover:bg-[#fe598d] hover:text-[#fff]"
+                onClick={gotoblog}
+              >
                 Learn More
               </button>
             </div>
