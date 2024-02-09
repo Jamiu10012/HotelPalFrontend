@@ -128,3 +128,34 @@ export const getPropByUserId = async (userId, token) => {
     throw error;
   }
 };
+export const getAllPropertiesInter = async () => {
+  try {
+    const myHeaders = new Headers();
+    myHeaders.append("User-Agent", "Apidog/1.0.0 (https://apidog.com)");
+    myHeaders.append(
+      "Authorization",
+      "Bearer 9c1bfd9304759d537da07ea8f6f03dab9230f9a0cd7bd283359d6f94866f36d7"
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      "https://api.mapro.io/v1/channels/properties",
+      requestOptions
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch properties data");
+    }
+  } catch (error) {
+    console.error("Error fetching properties data", error);
+    throw error;
+  }
+};

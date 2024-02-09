@@ -18,4 +18,7 @@ export default defineConfig({
     modules: false, // Set to true if you want to enable CSS modules
     extract: true, // Extract CSS into a separate file in production
   },
+  server: {
+    port: 3000,
+  },
 });

@@ -2,11 +2,12 @@ import CardCol from "../components/CardCol";
 import "../assets/css/property.css";
 import PropertyFilter from "../components/PropertyFilter";
 import { useEffect, useState } from "react";
-import { getAllProperties } from "../../Apis/ListProp";
+import { getAllProperties, getAllPropertiesInter } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
 import Skeleton from "../components/Skeleton";
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
+  const [propertyInterData, setPropertyInterData] = useState(null);
   const [searchParams] = useSearchParams();
   const location = searchParams.get("l");
   const checkIn = searchParams.get("n");
@@ -36,7 +37,19 @@ const Properties = () => {
 
     fetchData();
   }, []);
-  // console.log(priceFrom);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllPropertiesInter();
+        setPropertyInterData(data);
+      } catch (error) {
+        console.error("Error fetching property data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(propertyInterData);
   let filteredProperties = propertyData;
 
   if (locationText) {

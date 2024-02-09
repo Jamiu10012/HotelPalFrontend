@@ -3,10 +3,13 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+// import {
+//   SaveProperty,
+//   getSavedByUserIdAndPropId,
+// } from "../../Apis/SaveProperty";
+// import { API_URL } from "../../ProtectedRoute";
 
-import { API_URL } from "../../ProtectedRoute";
-
-const CardCol = ({ property }) => {
+const CardColInter = ({ property }) => {
   const [savedData, setSavedData] = useState(null);
   const token = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
@@ -56,33 +59,33 @@ const CardCol = ({ property }) => {
   //   }
   // };
 
-  const handleDelete = async () => {
-    const savedId = savedData?._id; // Replace with your user ID
+  // const handleDelete = async () => {
+  //   const savedId = savedData?._id; // Replace with your user ID
 
-    const token = token; // Replace with your access token
+  //   const token = token; // Replace with your access token
 
-    try {
-      const response = await fetch(
-        `${API_URL}/api/savedProperty/delete/${savedId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+  //   try {
+  //     const response = await fetch(
+  //       `${API_URL}/api/savedProperty/delete/${savedId}`,
+  //       {
+  //         method: "DELETE",
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
 
-      if (response.ok) {
-        console.log("Property Unsaved successfully");
-        // Perform any additional actions after deletion
-        toast.success("Property Unsaved Successfully!!!");
-      } else {
-        console.error("Failed to unsave property");
-      }
-    } catch (error) {
-      console.error("Error deleting property", error);
-    }
-  };
+  //     if (response.ok) {
+  //       console.log("Property Unsaved successfully");
+  //       // Perform any additional actions after deletion
+  //       toast.success("Property Unsaved Successfully!!!");
+  //     } else {
+  //       console.error("Failed to unsave property");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error deleting property", error);
+  //   }
+  // };
   return (
     <div className="card-prop w-[400px] bg-white border rounded-lg shadow  border-[#fe598d] relative">
       <img
@@ -132,4 +135,4 @@ const CardCol = ({ property }) => {
   );
 };
 
-export default CardCol;
+export default CardColInter;
