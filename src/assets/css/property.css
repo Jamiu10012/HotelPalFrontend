@@ -199,6 +199,14 @@
   .book-container {
     width: 90% !important;
   }
+  .new-pr {
+    width: 29% !important;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .new-pr {
+    width: 45% !important;
+  }
 }
 @media only screen and (max-width: 600px) {
   .mag-each {
@@ -209,5 +217,10 @@
     right: 8px !important;
     /* top: 0 !important; */
     padding: 10px !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .new-pr {
+    width: 100% !important;
   }
 }

@@ -21,6 +21,7 @@ import ForgotPassword from "./pages/forgotPassword";
 import BookListed from "./pages/bookedList.jsx";
 import MyBooking from "./pages/myBokking/index.jsx";
 import MyProperties from "./pages/MyProperties/index.jsx";
+import PropDetailInter from "./pages/PropDetailInter.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,6 +47,7 @@ function App() {
         <Route index path={"/contact"} element={<ContactUs />} />
         <Route index path={"/properties"} element={<Properties />} />
         <Route index path={"/propdet"} element={<PropDetail />} />
+        <Route index path={"/propdetint"} element={<PropDetailInter />} />
         <Route index path={"/listp"} element={<ListProp />} />
         <Route index path={"/dash"} element={<Dashboard />} />
         <Route index path={"/all-blog"} element={<AllBlog />} />
@@ -55,6 +57,7 @@ function App() {
         <Route index path={"/booked-list"} element={<BookListed />} />
         <Route index path={"/mybooking"} element={<MyBooking />} />
         <Route index path={"/myprop"} element={<MyProperties />} />
+
         <Route
           index
           path={"/reset-passwrd/:email"}

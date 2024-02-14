@@ -39,7 +39,7 @@ const CardColInter = ({ property }) => {
   };
 
   const gotoProp = () => {
-    navigate(`/propdet?id=${property._id}`);
+    navigate(`/propdetint?id=${property.id}`);
   };
   // const handleIsAct = () => {
   //   setIsAct(!isAct);
@@ -110,7 +110,7 @@ const CardColInter = ({ property }) => {
         </div> */}
       </div>
       <div className="p-2">
-        <Link to={`/propdet?id=${property._id}`}>
+        <Link to={`/propdetint?id=${property.id}`}>
           <h5 className="txt-cd mb-2 text-[16px] font-bold tracking-tight text-gray-700 ">
             {property?.title.en}
           </h5>

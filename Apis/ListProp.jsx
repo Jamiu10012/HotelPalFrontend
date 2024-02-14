@@ -142,3 +142,17 @@ export const getAllPropertiesInter = async () => {
     throw error;
   }
 };
+export const getPropByIdInter = async (propId) => {
+  try {
+    const response = await fetch(`${API_URL}/external/property/${propId}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch property data");
+    }
+  } catch (error) {
+    console.error("Error fetching property data", error);
+    throw error;
+  }
+};

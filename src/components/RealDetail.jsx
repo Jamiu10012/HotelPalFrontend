@@ -33,7 +33,7 @@ const RealDetail = ({ getData }) => {
     <div className="detail-body-container my-2 px-[110px] relative">
       <div className="li-txt font-[18px] text-[#4a4949]">
         <span className="text-[#fe598d]">{getData?.country}</span> /{" "}
-        {getData?.city} / {getData?.county} / {getData?.area}
+        {getData?.city} / {getData?.county}
       </div>
       {isBookOpen && (
         <div className="book-container fixed  z-50 bottom-5 right-5 bg-[#5f4c76] w-[40%] rounded-[10px]  p-10 pt-8">
@@ -58,8 +58,8 @@ const RealDetail = ({ getData }) => {
         <div className="des-ad font-bold text-[#3b3a3a]">Description</div>
         <div className="desc-box text-[#595758]">
           {showFullDescription
-            ? getData?.description
-            : `${getData?.description.slice(0, 350)}...`}
+            ? getData?.description.en
+            : `${getData?.description.en.slice(0, 350)}...`}
           <div
             className=""
             onClick={toggleDescription}
