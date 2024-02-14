@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllProperties, getAllPropertiesInter } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
 import Skeleton from "../components/Skeleton";
+import CardColInter from "../components/CardColInter";
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
   const [propertyInterData, setPropertyInterData] = useState(null);
@@ -41,7 +42,7 @@ const Properties = () => {
     const fetchData = async () => {
       try {
         const data = await getAllPropertiesInter();
-        setPropertyInterData(data);
+        setPropertyInterData(data.properties);
       } catch (error) {
         console.error("Error fetching property data:", error);
       }
@@ -155,6 +156,9 @@ const Properties = () => {
       </div>
 
       <div className="card-row-container flex gap-10 justify-between  flex-wrap p-20">
+        {propertyInterData?.map((property) => (
+          <CardColInter key={property._id} property={property} />
+        ))}
         {filteredProperties?.length > 0
           ? filteredProperties?.map((property) => (
               <CardCol key={property._id} property={property} />
