@@ -30,9 +30,8 @@ const PropDetailInter = () => {
   if (!getData) {
     return <SkeletonBig />;
   }
-
-  const combinedImages = [getData.mainPhoto];
-
+  const returnPhotoUrls = getData?.photos.map((photo) => photo.url);
+  const combinedImages = [getData.mainPhoto, ...returnPhotoUrls];
   return (
     <div className="detail-prop-container">
       <TopDetail combinedImages={combinedImages} />

@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 const TopDetail = ({ combinedImages }) => {
-  // const data = [
-  //   { img: "/images/hero-slide-01.webp", loc: "Bangkok", num: 3 },
-  //   { img: "/images/hero-slide-02.webp", loc: "Lagos", num: 4 },
-  //   { img: "/images/hero-slide-03.webp", loc: "GeoGia", num: 2 },
-  // ];
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === combinedImages.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  const [image, setImage] = useState(
+    combinedImages?.slice(currentImageIndex, 1)
+  );
 
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? combinedImages.length - 1 : prevIndex - 1
+    setCurrentImageIndex((prev) =>
+      prev === combinedImages?.length - 1 ? 0 : prev + 1
     );
   };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? combinedImages?.length - 1 : prev - 1
+    );
+  };
+
+  useEffect(() => {
+    setImage(combinedImages?.slice(currentImageIndex, currentImageIndex + 1));
+  }, [combinedImages, currentImageIndex]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -27,14 +29,11 @@ const TopDetail = ({ combinedImages }) => {
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [nextImage]);
+
   return (
     <div className="image-container-detail relative">
-      <img
-        src={combinedImages[currentImageIndex]}
-        alt=""
-        className="w-full h-[80vh] object-cover mage"
-      />
+      <img src={image} alt="" className="w-full h-[80vh] object-cover image" />
       <div className="control-pre-next flex justify-between p-10 absolute top-[40%] w-full">
         <div
           className="cursor-pointer ctrl-delt w-[30px] h-[30px] bg-[#f399b698] rounded-full text-[#fff] flex justify-center items-center"
