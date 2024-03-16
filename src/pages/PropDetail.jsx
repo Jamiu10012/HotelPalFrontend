@@ -2,14 +2,29 @@ import { useEffect, useState } from "react";
 import CardCol from "../components/CardCol";
 import RealDetail from "../components/RealDetail";
 import TopDetail from "../components/TopDetail";
-import { getPropById } from "../../Apis/ListProp";
+import { getPropById, getPropertiesRelated } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
 import SkeletonBig from "../components/SkeletonBig";
+import Skeleton from "../components/Skeleton";
 
 const PropDetail = () => {
   const [searchParams] = useSearchParams();
   const propId = searchParams.get("id");
   const [getData, setGetData] = useState(null);
+  const [propertyData, setPropertyData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPropertiesRelated();
+        setPropertyData(data);
+      } catch (error) {
+        console.error("Error fetching property data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchPropData = async () => {
@@ -42,6 +57,13 @@ const PropDetail = () => {
           Related Properties
         </div>
         {/* Add your related properties rendering logic here */}
+        <div className="card-row-container flex gap-4 justify-between flex-wrap">
+          {propertyData !== null
+            ? propertyData?.map((property) => (
+                <CardCol key={property._id} property={property} />
+              ))
+            : [1, 2, 3].map((_, id) => <Skeleton key={id} />)}
+        </div>
       </div>
     </div>
   );

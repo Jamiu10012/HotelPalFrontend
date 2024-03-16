@@ -156,3 +156,17 @@ export const getPropByIdInter = async (propId) => {
     throw error;
   }
 };
+export const getPropertiesRelated = async () => {
+  try {
+    const response = await fetch(`${API_URL}/listing/li/related-list`);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch properties data");
+    }
+  } catch (error) {
+    console.error("Error fetching properties data", error);
+    throw error;
+  }
+};

@@ -108,7 +108,10 @@ const CardCol = ({ property }) => {
         </div> */}
       </div>
       <div className="p-2">
-        <Link to={`/propdet?id=${property._id}`}>
+        <Link
+          to={`/propdet?id=${property._id}`}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           <h5 className="txt-cd mb-2 text-[16px] font-bold tracking-tight text-gray-700 ">
             {property.title}
           </h5>
