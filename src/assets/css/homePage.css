@@ -301,8 +301,15 @@
   .lab-book {
     font-size: 12px !important;
   }
+  .rm-brd {
+    align-items: flex-start !important ;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+  }
   .rm-brd span {
     width: 80px;
+  }
+  .chek-inp {
   }
   .smal-dero {
     height: 35vh !important;
@@ -323,7 +330,6 @@
     width: 100% !important;
   }
   input[type="date"] {
-    width: 150px !important;
     background: #fff;
   }
   .stat {
