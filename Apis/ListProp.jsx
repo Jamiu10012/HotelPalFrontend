@@ -144,7 +144,7 @@ export const getAllPropertiesInter = async () => {
 };
 export const getPropByIdInter = async (propId) => {
   try {
-    const response = await fetch(`${API_URL}/external/property/${propId}`);
+    const response = await fetch(`${API_URL}/external/propert/${propId}`);
     if (response.ok) {
       const data = await response.json();
       return data;

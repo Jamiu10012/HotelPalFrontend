@@ -19,14 +19,15 @@ function MyPropList() {
     };
 
     fetchData();
-  }, []);
+  }, [userId, token]);
+  console.log(propertyData);
   return (
     <div className="profile-main-container bord-pro p-4 my-prop-row">
-      {propertyData !== null
+      {propertyData.length !== 0
         ? propertyData?.map((property) => (
             <PropCard key={property._id} property={property} />
           ))
-        : [1, 2, 3, 4].map((_, id) => <Skeleton key={id} />)}
+        : [1, 2].map((_, id) => <Skeleton key={id} />)}
     </div>
   );
 }
