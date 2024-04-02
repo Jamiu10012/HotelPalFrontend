@@ -130,7 +130,7 @@ export const getPropByUserId = async (userId, token) => {
 };
 export const getAllPropertiesInter = async () => {
   try {
-    const response = await fetch(`${API_URL}/external/properties`);
+    const response = await fetch(`${API_URL}/external/propertie`);
     if (response.ok) {
       const data = await response.json();
       return data;
