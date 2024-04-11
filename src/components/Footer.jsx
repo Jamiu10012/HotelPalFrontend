@@ -2,7 +2,7 @@ import EzClickLogo2 from "../assets/images/EzClickLogo2.png";
 const Footer = () => {
   return (
     <footer className="bg-[#5f4c76] ">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <div className="mx-auto w-full p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0 w-full">
             <img src={EzClickLogo2} className="h-12 me-3 w-[100px]" alt="" />
@@ -23,7 +23,7 @@ const Footer = () => {
                 <li className="mb-2">Properties</li>
               </ul>
             </div>
-            <div className="w-[400px]">
+            <div className="">
               <h2 className="mb-3 text-sm font-semibold uppercase text-white">
                 CONTACT
               </h2>

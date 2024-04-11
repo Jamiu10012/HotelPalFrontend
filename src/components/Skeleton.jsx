@@ -1,6 +1,6 @@
 const Skeleton = () => {
   return (
-    <div className="card-prop skeleton w-[400px] bg-white border border-gray-200 rounded-lg shadow dark:bg-[#fff] dark:border-[#fe598d] relative">
+    <div className="skeleton bg-white border border-gray-200 rounded-lg shadow dark:bg-[#fff] dark:border-[#fe598d] relative">
       <div className="card-immg loading"></div>
 
       <div className="p-2">

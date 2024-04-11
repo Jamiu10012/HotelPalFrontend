@@ -6,6 +6,7 @@ import { getPropById, getPropertiesRelated } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
 import SkeletonBig from "../components/SkeletonBig";
 import Skeleton from "../components/Skeleton";
+import CardColRow from "../components/CardColRow";
 
 const PropDetail = () => {
   const [searchParams] = useSearchParams();
@@ -48,19 +49,19 @@ const PropDetail = () => {
   const combinedImages = [getData.cover_image, ...getData.rest_images];
 
   return (
-    <div className="detail-prop-container">
+    <div className="detail-prop-container bg-[#f37db415]">
       <TopDetail combinedImages={combinedImages} />
       <RealDetail getData={getData} />
 
       <div className="card-box-all mt-10 p-10 px-20">
-        <div className="text-[25px] font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">
+        <div className="text-3xl font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">
           Related Properties
         </div>
         {/* Add your related properties rendering logic here */}
-        <div className="card-row-container flex gap-4 justify-between flex-wrap">
+        <div className="space-y-4">
           {propertyData !== null
             ? propertyData?.map((property) => (
-                <CardCol key={property._id} property={property} />
+                <CardColRow key={property._id} property={property} />
               ))
             : [1, 2, 3].map((_, id) => <Skeleton key={id} />)}
         </div>

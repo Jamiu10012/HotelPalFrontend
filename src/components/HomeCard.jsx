@@ -26,11 +26,11 @@ const HomeCard = () => {
   }, []);
   // console.log(propertyData);
   return (
-    <div className="card-box-all  mt-10 p-10 px-20">
-      <div className="text-[25px] font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">
+    <div className="mt-10 container mx-auto px-4">
+      <div className="text-[25px] font-[700] mb-8 text-[#000] border-y-2 border-y-[#fe598d]">
         Featured Listing
       </div>
-      <div className="card-row-container flex gap-4 justify-between flex-wrap">
+      <div className="grid md:grid-cols-2 gap-4 lg:grid-cols-3">
         {propertyData !== null
           ? propertyData?.map((property) => (
               <CardCol key={property._id} property={property} />

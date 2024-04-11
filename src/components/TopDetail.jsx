@@ -32,9 +32,31 @@ const TopDetail = ({ combinedImages }) => {
   }, [nextImage]);
 
   return (
-    <div className="image-container-detail relative">
-      <img src={image} alt="" className="w-full h-[80vh] object-cover image" />
-      <div className="control-pre-next flex justify-between p-10 absolute top-[40%] w-full">
+    <div className="container mx-auto p-4 relative">
+      <div className="grid grid-cols-3 grid-rows-2 gap-4 rounded-xl overflow-hidden lg:h-[60vh]">
+        <div className="col-span-2 row-span-2">
+          <img
+            src={image}
+            alt=""
+            className="w-full object-cover image"
+          />
+        </div>
+        <div className="r row-span-1 rounded-xl overflow-hidden">
+          <img
+            src={image}
+            alt=""
+            className="w-full object-cover image"
+          />
+        </div>
+        <div className="c row-span-1 rounded-xl overflow-hidden">
+          <img
+            src={image}
+            alt=""
+            className="w-full object-cover image"
+          />
+        </div>
+      </div>
+      <div className="control-pre-next flex justify-between p-10 absolute top-[40%] w-full lg:hidden">
         <div
           className="cursor-pointer ctrl-delt w-[30px] h-[30px] bg-[#f399b698] rounded-full text-[#fff] flex justify-center items-center"
           onClick={prevImage}

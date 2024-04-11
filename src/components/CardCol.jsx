@@ -84,9 +84,9 @@ const CardCol = ({ property }) => {
     }
   };
   return (
-    <div className="card-prop w-[400px] bg-white border rounded-lg shadow  border-[#fe598d] relative">
+    <div className="rounded-lg  border-[#fe598d] relative">
       <img
-        className="rounded-t-lg"
+        className="rounded-lg"
         src={property.cover_image}
         alt=""
         onClick={gotoProp}
@@ -107,12 +107,12 @@ const CardCol = ({ property }) => {
           )}
         </div> */}
       </div>
-      <div className="p-2">
+      <div className="p-2 mt-4">
         <Link
           to={`/propdet?id=${property._id}`}
           onClick={() => window.scrollTo(0, 0)}
         >
-          <h5 className="txt-cd mb-2 text-[16px] font-bold tracking-tight text-gray-700 ">
+          <h5 className="mb-2 text-sm font-bold tracking-tight text-gray-700 ">
             {property.title}
           </h5>
         </Link>

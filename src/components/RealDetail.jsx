@@ -31,7 +31,7 @@ const RealDetail = ({ getData }) => {
   };
 
   return (
-    <div className="detail-body-container my-2 px-[110px] relative">
+    <div className="container mx-auto px-4 my-2 relative">
       <div className="li-txt font-[18px] text-[#4a4949]">
         <span className="text-[#fe598d]">{getData?.country}</span> {" / "}
         {getData?.city} / {getData?.country}
@@ -47,7 +47,7 @@ const RealDetail = ({ getData }) => {
           <BookFormMain getData={getData} />
         </div>
       )}
-      <div className="btn-book fixed right-10 z-20 top-[90%]">
+      <div className="btn-book fixed right-10 z-20 bottom-[32px]">
         <button
           className="bokbtn bg-[#fe598d] border border-[#fe598d] hover:bg-[#fff] px-5 py-2 rounded-[6px] text-white hover:text-[#fe598d]"
           onClick={handleIsBookOpen}
@@ -55,30 +55,37 @@ const RealDetail = ({ getData }) => {
           Book Now
         </button>
       </div>
-      <div className="dec-container">
-        <div className="des-ad font-bold text-[#3b3a3a]">Description</div>
-        <div className="desc-box text-[#595758]">
-          {showFullDescription
-            ? getData?.description?.en || getData?.description
-            : `${
-                getData?.description?.en?.slice(0, 350) ||
-                getData?.description?.slice(0, 350)
-              }...`}
-          <div
-            className=""
-            onClick={toggleDescription}
-            style={{ cursor: "pointer", color: "#fe598d" }}
-          >
-            {showFullDescription ? "Show Less" : "Show More"}
+      <div className="grid gap-8">
+        <div className="dec-container">
+          <div className="des-ad font-bold text-[#3b3a3a] text-4xl">
+            Description
+          </div>
+          <div className="desc-box text-[#595758] text-justify">
+            {showFullDescription
+              ? getData?.description?.en || getData?.description
+              : `${
+                  getData?.description?.en?.slice(0, 350) ||
+                  getData?.description?.slice(0, 350)
+                }...`}
+            <div
+              className=""
+              onClick={toggleDescription}
+              style={{ cursor: "pointer", color: "#fe598d" }}
+            >
+              {showFullDescription ? "Show Less" : "Show More"}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="details-row flex flex-wrap justify-between items-start w-full">
-        <DetailCard getData={getData} />
-        <DetailCardTree getData={getData} />
-        <DetailCardTwo getData={getData} />
-        <DetailCardFour getData={getData} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4  w-full">
+          <DetailCard getData={getData} />
+          <DetailCard getData={getData} />
+          <DetailCard getData={getData} />
+          <DetailCard getData={getData} />
+          {/* <DetailCardTree getData={getData} />
+          <DetailCardTwo getData={getData} />
+          <DetailCardFour getData={getData} /> */}
+        </div>
       </div>
     </div>
   );

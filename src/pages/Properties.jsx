@@ -6,6 +6,7 @@ import { getAllProperties, getAllPropertiesInter } from "../../Apis/ListProp";
 import { useSearchParams } from "react-router-dom";
 import Skeleton from "../components/Skeleton";
 import CardColInter from "../components/CardColInter";
+import CardColRow from "../components/CardColRow";
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
   const [propertyInterData, setPropertyInterData] = useState(null);
@@ -112,7 +113,7 @@ const Properties = () => {
   //   );
   // }
   return (
-    <>
+    <div className="]">
       <div className='hero-section relative h-[50vh] after:content-[" "] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-r after:from-[rgba(255,251,246,0.8)] after:to-transparent flex w-full overflow-hidden mb-5 pt-2 '>
         <div className="h-full w-full relativeimage-container">
           <div className="absolute bg-[] top-0 h-full w-full"></div>
@@ -130,42 +131,46 @@ const Properties = () => {
           </div>
         </div>
       </div>
-      <div className="sort-propertie-container">
-        <PropertyFilter
-          locationText={locationText}
-          setLocationText={setLocationText}
-          checkInText={checkInText}
-          setCheckInText={setCheckInText}
-          checkOutText={checkOutText}
-          setCheckOutText={setCheckOutText}
-          guestText={guestText}
-          setGuestText={setGuestText}
-          setSelectedBath={setSelectedBath}
-          selectedBath={selectedBath}
-          selectedBed={selectedBed}
-          setSelectedBed={setSelectedBed}
-          selectedType={selectedType}
-          setSelectedType={setSelectedType}
-          selectedSize={selectedSize}
-          setSelectedSize={setSelectedSize}
-          priceFrom={priceFrom}
-          setpriceFrom={setpriceFrom}
-          priceTo={priceTo}
-          setpriceTo={setpriceTo}
-        />
-      </div>
+      <div className="container mx-auto px-4 lg:px-0 pb-16">
+        <div className="grid lg:grid-cols-4 gap-4">
+          <div className="">
+            <PropertyFilter
+              locationText={locationText}
+              setLocationText={setLocationText}
+              checkInText={checkInText}
+              setCheckInText={setCheckInText}
+              checkOutText={checkOutText}
+              setCheckOutText={setCheckOutText}
+              guestText={guestText}
+              setGuestText={setGuestText}
+              setSelectedBath={setSelectedBath}
+              selectedBath={selectedBath}
+              selectedBed={selectedBed}
+              setSelectedBed={setSelectedBed}
+              selectedType={selectedType}
+              setSelectedType={setSelectedType}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+              priceFrom={priceFrom}
+              setpriceFrom={setpriceFrom}
+              priceTo={priceTo}
+              setpriceTo={setpriceTo}
+            />
+          </div>
 
-      <div className="card-row-container flex gap-10 justify-between  flex-wrap p-20">
-        {propertyInterData?.map((property) => (
-          <CardColInter key={property._id} property={property} />
-        ))}
-        {filteredProperties?.length > 0
-          ? filteredProperties?.map((property) => (
-              <CardCol key={property._id} property={property} />
-            ))
-          : [1, 2, 3, 4, 5, 6].map((_, id) => <Skeleton key={id} />)}
+          <div className="md:col-span-3 space-y-4">
+            {propertyInterData?.map((property) => (
+              <CardColInter key={property._id} property={property} />
+            ))}
+            {filteredProperties?.length > 0
+              ? filteredProperties?.map((property) => (
+                  <CardColRow key={property._id} property={property} />
+                ))
+              : [1, 2, 3, 4, 5, 6].map((_, id) => <Skeleton key={id} />)}
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

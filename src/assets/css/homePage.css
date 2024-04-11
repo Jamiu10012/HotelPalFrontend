@@ -68,7 +68,7 @@
 }
 .skeleton span {
   background: rgb(190, 190, 190);
-  width: 80%;
+  width: 100%;
   color: rgb(190, 190, 190) !important;
 }
 .loading {

@@ -11,12 +11,12 @@ const AboutUs = () => {
     navigate("/all-blog");
   };
   return (
-    <div className="about-us-container flex gap-5 p-20 items-center">
-      <div className="left-about-box">
-        <img src={ab} alt="" />
+    <div className="container mx-auto px-4 mt-20 grid md:grid-cols-2 gap-4">
+      <div className="max-h-[400px] rounded-lg overflow-hidden">
+        <img src={ab} alt="" className="rounded-lg" />
       </div>
-      <div className="right-about-box">
-        <div className="abot-head text-[25px] font-bold text-gray-700">
+      <div className="self-center">
+        <div className="text-4xl font-bold text-gray-700">
           ABOUT EZ CLICK STAY
         </div>
         <div className="about-body mt-7 text-gray-700">

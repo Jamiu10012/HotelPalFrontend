@@ -11,12 +11,12 @@ import HeroVideo from "../components/HeroVideo";
 // import VideoHome from "../components/VideoHome";
 function HomePage() {
   return (
-    <div className="all-hero">
-      <div className="cont-hero relative  ">
-        <HeroVideo />
-        {/* <HeroImage /> */}
-        <BookingForm />
-      </div>
+    <div className="">
+      {/* <div className="relative  "> */}
+      <HeroVideo />
+      {/* <HeroImage /> */}
+      <BookingForm />
+      {/* </div> */}
       {/* <Cities /> */}
       <HomeCard />
       {/* <VideoHome /> */}

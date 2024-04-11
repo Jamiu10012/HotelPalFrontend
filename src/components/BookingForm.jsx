@@ -4,6 +4,7 @@ import { PiUsersLight } from "react-icons/pi";
 import { BsDashCircle } from "react-icons/bs";
 import { BsPlusCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
 
 function BookingForm() {
   const [guest, setGuest] = useState(1);
@@ -28,48 +29,48 @@ function BookingForm() {
   };
 
   return (
-    <div className="boo-cont absolute -bottom-[1rem] left-[7%] rounded-full search-container w-[85%] mx-auto bg-white flex py-2 px-2 z-20">
-      <form className=" book-ser-form relative w-[100%]  bg-faint_pink rounded-full flex justify-between items-center gap-6 mx-auto p-3 border border-primary_pink ">
-        <div className="rm-brd relative h-full rounded-s-full pr-3 flex justify-center items-center border-e-[0.8px] border-e-primary_pink">
+    <div className="relative -mt-6 max-w-6xl mx-auto rounded-t-3xl md:rounded-none bg-white lg:shadow-md lg:rounded-full flex p-2 z-50">
+      <form className="lg:rounded-full md:flex space-y-4 md:space-y-0 justify-between w-full items-center gap-8 p-3 md:border border-primary_pink px-8">
+        <div className="gap-2 flex flex-wrap lg:flex-nowrap items-center md:border-r border-primary_pink pr-3">
           <span>
-            <LiaCitySolid size={25} color="#fe598d" />
+            <LiaCitySolid color="#fe598d" />
           </span>
           <input
             type="text"
             name="location"
             id="location"
             placeholder="location"
-            className="inp-book w-[300px] h-full bg-faint_pink outline-none px-4 text-[16px]"
+            className="h-10 border w-full border-primary_pink outline-none px-2 text-sm"
             value={location}
             onChange={handleLocationChange}
           />
         </div>
-        <div className="rm-brd flex gap-2 justify-center items-center">
-          <span className="text-[14px] lab-book">Check In</span>
+        <div className="flex gap-2 flex-wrap lg:flex-nowrap items-center md:border-r border-primary_pink pr-3">
+          <span className="text-sm lab-book">Check In</span>
           <input
             type="date"
             placeholder="YYYY-MM-DD"
-            className="inp-book chek-inp border-[1px] px-2 rounded-sm text-[12px]"
+            className="h-10 border w-full border-primary_pink px-2 rounded-sm text-[12px]"
             value={checkIn}
             onChange={handleCheckInChange}
           />
         </div>
-        <div className=" rm-brd flex gap-2 justify-center items-center">
-          <span className="text-[14px] lab-book">Check Out</span>
+        <div className="flex gap-2 flex-wrap lg:flex-nowrap items-center">
+          <span className="text-[14px] ">Check Out</span>
           <input
             type="date"
-            className="inp-book chek-inp border-[1px] px-2 rounded-sm text-[12px]"
+            className="h-10 border w-full border-primary_pink px-2 rounded-sm text-[12px]"
             value={checkOut}
             onChange={handleCheckOutChange}
           />
         </div>
 
-        <div className="flex justify-center items-center ">
-          <span>
+        <div className="flex flex-wrap gap-2 items-center">
+          <span className="flex gap-2">
             <PiUsersLight size={25} color="#fe598d" />
+            <span className="text-[20]">Guest</span>
           </span>
-          <div className="flex gap-3 justify-center items-center w-[160px]">
-            <span className="text-[20] stat">Guest</span>
+          <div className="flex gap-3 justify-center items-center">
             <span
               className="text-xl cursor-pointer"
               onClick={() => {
@@ -97,13 +98,20 @@ function BookingForm() {
             </span>
           </div>
         </div>
-        <div className="btn-ser">
+        <div className="">
           <button
-            className="flex justify-center items-center bg-primary_pink rounded-full py-2 px-6 text-[16px] text-white"
+            className="lg:flex justify-center w-full h-10 items-center bg-primary_pink rounded-full py-2 px-6 text-[16px] text-white md:hidden"
             type="button"
             onClick={gotoProp}
           >
             Search
+          </button>
+          <button
+            className="hidden md:flex justify-center text-4xl items-center text-primary_pink rounded-full lg:hidden"
+            type="button"
+            onClick={gotoProp}
+          >
+            <FiSearch />
           </button>
         </div>
       </form>

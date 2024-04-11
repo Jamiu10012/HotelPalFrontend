@@ -98,8 +98,8 @@ const PropertyFilter = ({
     setIsGuest(false);
   };
   return (
-    <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 lg:grid-cols-none sticky top-24 z-40">
-      <div className="inpu-icon-box">
+    <div className="filter-sort px-20 flex flex-wrap gap-3 justify-between">
+      <div className="inpu-icon-box wid-fl">
         <IoLocation className="icon-prop" />
         <input
           type="text"
@@ -110,7 +110,7 @@ const PropertyFilter = ({
         />
       </div>
       <div
-        className="select-container flex items-center justify-between relative cursor-pointer"
+        className="select-container wid-fl flex items-center justify-between relative cursor-pointer"
         onClick={handleIsGuest}
       >
         <FaRegUser className="main-icon" />
@@ -129,7 +129,7 @@ const PropertyFilter = ({
         )}
       </div>
       <div
-        className="select-container flex items-center justify-between relative cursor-pointer"
+        className="select-container wid-fl flex items-center justify-between relative cursor-pointer"
         onClick={handleIsRoom}
       >
         <FaDoorOpen className="main-icon" />
@@ -144,7 +144,7 @@ const PropertyFilter = ({
         )}
       </div>
       <div
-        className="select-container flex items-center justify-between relative cursor-pointer"
+        className="select-container wid-fl flex items-center justify-between relative cursor-pointer"
         onClick={handleIsType}
       >
         <FaListUl className="main-icon" />
@@ -159,7 +159,7 @@ const PropertyFilter = ({
         )}
       </div>
       <div
-        className="select-container flex items-center justify-between relative cursor-pointer"
+        className="select-container wid-fl flex items-center justify-between relative cursor-pointer"
         onClick={handleIsSize}
       >
         <FaHome className="main-icon" />
@@ -174,7 +174,7 @@ const PropertyFilter = ({
         )}
       </div>
       <div
-        className="select-container flex items-center justify-between relative cursor-pointer"
+        className="select-container wid-fl flex items-center justify-between relative cursor-pointer"
         onClick={handleIsBed}
       >
         <FaBed className="main-icon" />
@@ -191,7 +191,7 @@ const PropertyFilter = ({
         )}
       </div>
       <div
-        className="select-container flex items-center justify-between relative cursor-pointer"
+        className="select-container wid-fl flex items-center justify-between relative cursor-pointer"
         onClick={handleIsBath}
       >
         <FaBath className="main-icon" />
@@ -207,7 +207,7 @@ const PropertyFilter = ({
           <FilterModal data={bedata} handleIsGuestClose={handleIsBathClose} />
         )}
       </div>
-      <div className="price-range-box flex">
+      <div className="price-range-box flex wid-fl">
         <input
           type="text"
           className="prc-ran-inp outline-none px-2"

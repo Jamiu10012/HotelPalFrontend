@@ -35,7 +35,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <div className="appl">
+    <div className="">
       <ScrollToTop />
 
       <Navbar />

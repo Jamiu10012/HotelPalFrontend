@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaBed } from "react-icons/fa";
+import { FaMoneyBill1 } from "react-icons/fa6";
+import { GiVacuumCleaner } from "react-icons/gi";
+
 const DetailCard = ({ getData }) => {
   const data = [
     {
@@ -49,12 +53,12 @@ const DetailCard = ({ getData }) => {
     setIsclick(false);
   };
   return (
-    <div className="mw-bx max-w-sm mb-2 p-6 bg-[#f2afc5] border border-gray-200 rounded-lg shadow ">
-      <div className="sel-top-cont flex items-center justify-between w-full">
-        <h5 className="mb-2 text-xl font-medium tracking-tight text-white">
+    <div className="mw-bx mb-2 p-6 border-gray-200 rounded-lg">
+      <div className="w-full">
+        <h5 className="mb-2 text-gray-600 text-sm tracking-tight">
           Price Details
         </h5>
-        {isclick ? (
+        {/* {isclick ? (
           <FaChevronUp
             className="text-white cursor-pointer"
             onClick={handleClickClose}
@@ -64,31 +68,82 @@ const DetailCard = ({ getData }) => {
             className="text-white cursor-pointer"
             onClick={handleClick}
           />
-        )}
+        )} */}
       </div>
 
-      {isclick && (
-        <>
-          <p className="mb-3 font-normal text-black">
-            Price per night: {getData?.currency} {getData?.price_per_night}
-          </p>
-          <p className="mb-3 font-normal text-black">
-            Price per night (7d+): {getData?.currency}{" "}
-            {getData?.price_per_night_week}
-          </p>
-          <p className="mb-3 font-normal text-black">
-            Price per night (30d+): {getData?.currency}{" "}
-            {getData?.price_per_night_month}
-          </p>
-          <p className="mb-3 font-normal text-black">
-            City Tax Fee: {getData?.currency} {getData?.tax_fee} Single Fee
-          </p>
-
-          <p className="mb-3 font-normal text-black">
-            Cleaning Fee: {getData?.currency} {getData?.cleaning_fee} Single Fee
-          </p>
-        </>
-      )}
+      {/* {isclick && ( */}
+      <table className=" border-black max-w-xs text-xs w-full">
+        <tr className="bo border-black">
+          <td className="bo border-black py-2">
+            <div className="flex gap-2">
+              <span>
+                <FaBed />
+              </span>
+              Price per night
+            </div>
+          </td>
+          <td className="pr-4">
+            {getData?.currency} {getData?.price_per_night}
+          </td>
+        </tr>
+        <tr className="bo border-black">
+          <td className="bo border-black py-2">
+            <div className="flex gap-2">
+              <span>
+                <FaBed />
+              </span>
+              Price per night (30d+)
+            </div>
+          </td>
+          <td className="pr-4">
+            {getData?.currency} {getData?.price_per_night_month}
+          </td>
+        </tr>
+        <tr className="bo border-black">
+          <td className="bo border-black py-2">
+            <div className="flex gap-2">
+              <span>
+                <FaBed />
+              </span>
+              Price per night
+            </div>
+          </td>
+          <td className="pr-4">
+            {getData?.currency} {getData?.price_per_night}
+          </td>
+        </tr>
+        <tr className="bo border-black">
+          <td className="bo border-black py-2">
+            <div className="flex gap-2">
+              <span>
+                <FaMoneyBill1 />
+              </span>
+              City Tax Fee
+            </div>
+          </td>
+          <td className="pr-4">
+            {getData?.currency} {getData?.tax_fee} Single Fee
+          </td>
+        </tr>
+        <tr className="bo border-black">
+          <td className="bo border-black py-2">
+            <div className="flex gap-2">
+              <span>
+                <GiVacuumCleaner />
+              </span>
+              Cleaning Fee
+            </div>
+          </td>
+          <td className="pr-4">
+            {getData?.currency} {getData?.cleaning_fee} Single Fee
+          </td>
+        </tr>
+        {/* <p className="mb-3 font-normal text-black">
+           = 
+        </p> */}
+        {/* <p className="mb-3 font-normal text-black">=</p> */}
+      </table>
+      {/* )} */}
     </div>
   );
 };

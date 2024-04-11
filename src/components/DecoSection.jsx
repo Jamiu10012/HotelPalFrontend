@@ -57,17 +57,17 @@ function DecoSection() {
   const currentItem = data[currentIndex];
 
   return (
-    <div className="deco-container p-20 ">
-      <div className='hero-section rounded-[20px]  relative h-[70vh] after:content-[" "] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-r after:from-[rgba(32,31,31,0.8)] after:to-transparent flex w-full overflow-x-hidden '>
-        <div className="h-full w-full relativeimage-container">
-          <div className="absolute bg-[#70636729] top-0 h-full w-full rounded-[20px]"></div>
+    <div className="container mx-auto px-4 mt-20">
+      <div className='rounded-[20px]  relative after:content-[" "] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-r after:from-[rgba(32,31,31,0.8)] after:to-transparent flex w-full overflow-x-hidden '>
+        <div className="h-[400px] w-full relativeimage-container">
+          <div className="absolute bg-[#70636729] top-0 h-full rounded-[20px]"></div>
           <img
             src={currentItem.img}
             alt={`Slide ${currentIndex + 1}`}
             className="w-full h-full object-fill rounded-[20px]"
           />
         </div>
-        <div className=" absolute top-0 left-4 md:left-12 w-full md:w-[100%] lg:w-[100%] flex justify-center items-start flex-col h-full z-10 text-container">
+        <div className=" absolute top-0 w-full md:w-[100%] lg:w-[100%] flex justify-center items-start flex-col h-full z-10 text-container">
           <div className="text-box relative w-full md:w-[45%] lg:w-[40%] p-4 md:p-8 ">
             <h1 className="text-2xl md:text-3xl lg:text-5xl font-medium leading-7 md:leading-9 lg:leading-40 mb-4 md:mb-8 lihe red-ln text-white">
               Share Your Space with the World

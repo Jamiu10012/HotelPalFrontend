@@ -32,7 +32,7 @@ function Navbar() {
     setIsMenu(false);
   };
   return (
-    <header className="min-h-[57px] w-full bg-white border-b sticky top-0 flex justify-between items-center p-2 z-50">
+    <header className="min-h-[57px] w-full bg-white border-b sticky top-0 flex justify-between items-center p-2 z-[100]">
       <nav className="w-[90%] m-auto flex justify-between items-center">
         <Link to={"/"} className="logo flex items-center">
           <img src="/images/EzClickLogo1.png" className="w-[150px]" />
