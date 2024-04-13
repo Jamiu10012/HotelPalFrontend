@@ -102,8 +102,8 @@ const BookFormMain = ({ getData }) => {
   return (
     <div className="bookfm-bx pt-5">
       <form action="" onSubmit={handleFormSubmit}>
-        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#fff] px-3 py-2 text-[#fff]">
-          <FaCalendarDays className="text-[20px] text-[#fff]" />
+        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#272932] px-3 py-2 text-[#272932]">
+          <FaCalendarDays className="text-[20px] text-[#272932]" />
           {formattedDate ? (
             <div className="dat-tst" onClick={handleCheckInClick}>
               {formattedDate}
@@ -111,7 +111,7 @@ const BookFormMain = ({ getData }) => {
           ) : (
             <span
               onClick={handleCheckInClick}
-              className="text-[20px] text-gray-400"
+              className="text-[20px] text-[#79745C]"
             >
               Check in
             </span>
@@ -127,8 +127,8 @@ const BookFormMain = ({ getData }) => {
             />
           </div>
         )}
-        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center text-[#fff] border border-[#fff] px-3 py-2">
-          <FaCalendarDays className="text-[20px] text-[#fff]" />
+        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center text-[#272932] border border-[#272932] px-3 py-2">
+          <FaCalendarDays className="text-[20px] text-[#272932]" />
           {formattedDateOut ? (
             <div className="dat-tst" onClick={handleCheckInClickOut}>
               {formattedDateOut}
@@ -136,14 +136,14 @@ const BookFormMain = ({ getData }) => {
           ) : (
             <span
               onClick={handleCheckInClickOut}
-              className="text-[20px] text-gray-400"
+              className="text-[20px] text-[#79745C]"
             >
               Check out
             </span>
           )}
         </div>
         {isDatePickerVisibleOut && (
-          <div className="calend-box">
+          <div className="">
             <Calendar
               value={valueOut}
               setValue={setValueOut}
@@ -153,15 +153,15 @@ const BookFormMain = ({ getData }) => {
           </div>
         )}
 
-        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#fff] px-3 py-2 ">
-          <IoMdPerson className="text-[20px] text-[#fff]" />
+        <div className="check-in-out-bx rounded mb-5 w-full flex gap-[10px] items-center border border-[#272932] px-3 py-2 ">
+          <IoMdPerson className="text-[20px] text-[#272932]" />
 
           <div className="relative z-0 inp-lab-container  group">
             <input
               type="text"
               name="sGuest"
               id="sGuest"
-              className="block desc-input py-3 px-0 w-full text-sm  bg-transparent text-white  outline-none caret-white  peer"
+              className="block desc-input py-3 px-0 w-full text-sm  bg-transparent text-[#272932]  outline-none caret-[#272932]  peer"
               placeholder=" "
               required
               value={sGuest}
@@ -169,7 +169,7 @@ const BookFormMain = ({ getData }) => {
             />
             <label
               htmlFor=""
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#fff] peer-focus:dark:text-[#fff] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="peer-focus:font-medium absolute whitespace-nowrap text-[#79745C] duration-300 transform -translate-y-6 scale-75 top-1 bg-[#F6F7EB] py-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#272932] peer-focus:dark:text-[#272932] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Guest No: e.g 1
             </label>
@@ -177,7 +177,7 @@ const BookFormMain = ({ getData }) => {
         </div>
 
         {dateDifference > 0 && (
-          <div className="box-container">
+          <div className="">
             <div className="cal-price-box">
               <div className="left-pric">
                 {getData?.currency} {price} x {dateDifference} nights
@@ -212,8 +212,8 @@ const BookFormMain = ({ getData }) => {
             </div>
           </div>
         )}
-        <div className="btn-book   z-20 flex justify-center  my-6 ">
-          <button className="bokbtn bg-[#fe598d] border border-[#fe598d] hover:bg-[#fff] px-5 py-2 rounded-[6px] text-white hover:text-[#fe598d]">
+        <div className="z-20  my-6 ">
+          <button className="bg-[#fe598d] border border-[#fe598d] hover:bg-[#fff] w-full px-5 py-2 rounded-[6px] text-272932 hover:text-[#fe598d]">
             Book Now
           </button>
         </div>

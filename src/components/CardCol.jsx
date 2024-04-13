@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { MdHome } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 
 import { API_URL } from "../../ProtectedRoute";
 
@@ -10,23 +12,6 @@ const CardCol = ({ property }) => {
   const [savedData, setSavedData] = useState(null);
   const token = localStorage.getItem("authToken");
   const userId = localStorage.getItem("userId");
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await getSavedByUserIdAndPropId(
-  //         userId,
-  //         property._id,
-  //         token
-  //       );
-  //       setSavedData(data);
-  //     } catch (error) {
-  //       console.error("Error fetching  data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
   const [isAct, setIsAct] = useState(false);
   const navigate = useNavigate();
 
@@ -36,25 +21,8 @@ const CardCol = ({ property }) => {
   };
 
   const gotoProp = () => {
-    navigate(`/propdet?id=${property._id}`);
+    navigate(`/propdet?id=${property._id}`, { state: property });
   };
-  // const handleIsAct = () => {
-  //   setIsAct(!isAct);
-  // };
-  // const handleFormSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const result = await SaveProperty(formData, token);
-  //     // console.log(result);
-  //     toast.success("Property Saved Successfully!!!");
-
-  //     return () => clearTimeout(timeoutId);
-  //   } catch (error) {
-  //     console.error(error.status);
-  //     if (error.status) toast.error(error);
-  //   }
-  // };
 
   const handleDelete = async () => {
     const savedId = savedData?._id; // Replace with your user ID
@@ -83,47 +51,52 @@ const CardCol = ({ property }) => {
       console.error("Error deleting property", error);
     }
   };
+
   return (
-    <div className="rounded-lg  border-[#fe598d] relative">
-      <img
-        className="rounded-lg"
-        src={property.cover_image}
-        alt=""
-        onClick={gotoProp}
-      />
+    <div className="rounded-md relative max-w-sm mx-auto shadow bg-white">
+      <div className="h-56 overflow-hidden">
+        <img
+          className="rounded-lg"
+          src={property.cover_image}
+          alt=""
+          onClick={gotoProp}
+        />
+      </div>
       <div className="price-fav-cont absolute top-3 flex justify-between w-full p-2">
         <div className="price-tag bg-[#fe598d] text-[#fff] rounded px-2">
           {property.currency}
           {property.price_per_night}
         </div>
-        {/* <div
-          className="fav-bx w-6 h-6  flex justify-center items-center text-[#fe598d] "
-          onClick={handleIsAct}
-        >
-          {isAct ? (
-            <MdFavorite />
-          ) : (
-            <MdFavoriteBorder onClick={handleFormSubmit} />
-          )}
-        </div> */}
       </div>
       <div className="p-2 mt-4">
-        <Link
-          to={`/propdet?id=${property._id}`}
-          onClick={() => window.scrollTo(0, 0)}
+        <div className="flex gap-1 text-yellow-400 text-sm">
+          <IoIosStar />
+          <IoIosStar />
+          <IoIosStar />
+          <IoIosStar />
+          <IoIosStar />
+        </div>
+        <div
+          onClick={() => {
+            window.scrollTo(0, 0);
+            gotoProp();
+          }}
+          className="cursor-pointer"
         >
-          <h5 className="mb-2 text-sm font-bold tracking-tight text-gray-700 ">
+          <h5 className="mb-2 text-2xl font-medium tracking-tight text-gray-700 ">
             {property.title}
           </h5>
-        </Link>
-        <div className="body-box mb-3 font-normal text-gray-400">
+        </div>
+        <div className="text-xl mb-3 font-normal text-[#79745C]">
           <div className="flex items-center gap-1 mb-2">
-            <IoLocation />
+            <span className="text-[#79745C]">
+              <IoLocation />
+            </span>
             <span> {property.country}</span>
           </div>
 
           <div className="flex items-center gap-1 ">
-            <IoLocation />
+            <MdHome />
             <span>
               {property.category} / {property.room_type}
             </span>

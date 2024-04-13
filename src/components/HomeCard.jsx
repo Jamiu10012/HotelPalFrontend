@@ -23,14 +23,19 @@ const HomeCard = () => {
     };
 
     fetchData();
+    console.log({propertyData});
   }, []);
   // console.log(propertyData);
   return (
-    <div className="mt-10 container mx-auto px-4">
-      <div className="text-[25px] font-[700] mb-8 text-[#000] border-y-2 border-y-[#fe598d]">
-        Featured Listing
-      </div>
-      <div className="grid md:grid-cols-2 gap-4 lg:grid-cols-3">
+    <div className="mt-10 max-w-7xl mx-auto px-4">
+      <h1 className="text-3xl md:text-4xl text-left font-medium text-[#272932] md:text-center lg:text-left">
+        Book Unforgettable Spaces
+      </h1>
+      <p className="text-[#79745C] font-light mt-2 mb-8 md:text-center lg:text-left">
+        From a room for a night to a loft for as long as you like,<br className="hidden md:block" />create an
+        unforgetable memory in our one of a kind spaces
+      </p>
+      <div className="grid md:grid-cols-2 gap-8 md:gap-4 lg:grid-cols-3">
         {propertyData !== null
           ? propertyData?.map((property) => (
               <CardCol key={property._id} property={property} />

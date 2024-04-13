@@ -100,7 +100,7 @@ const PropertyFilter = ({
   return (
     <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 lg:grid-cols-none sticky top-24 z-40">
       <div className="inpu-icon-box">
-        <IoLocation className="icon-prop" />
+        <IoLocation className="main_icon" />
         <input
           type="text"
           className="loc-inp outline-none w-[90%]"

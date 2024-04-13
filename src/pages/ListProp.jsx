@@ -6,8 +6,10 @@ import LocationForm from "../components/LocationForm";
 import PriceForm from "../components/PriceForm";
 import { CreateProperty } from "../../Apis/ListProp";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ListProp = () => {
+  const navigate = useNavigate();
   const [isPrice, SetIsPrice] = useState(false);
   const [isImage, SetIsImage] = useState(false);
   const [isLocation, SetIsLocation] = useState(false);
@@ -131,7 +133,7 @@ const ListProp = () => {
     try {
       const result = await CreateProperty(formData, userId, token);
       toast.success("Property Created Successfully!!!");
-
+      navigate("/listp")
       return () => clearTimeout(timeoutId);
     } catch (error) {
       toast.error(error.message);

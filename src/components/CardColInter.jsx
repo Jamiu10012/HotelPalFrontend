@@ -87,27 +87,19 @@ const CardColInter = ({ property }) => {
   //   }
   // };
   return (
-    <div className="card-prop new-pr w-[400px] bg-white border rounded-lg shadow  border-[#fe598d] relative">
-      <img
-        className="rounded-t-lg"
-        src={property?.mainPhoto}
-        alt=""
-        onClick={gotoProp}
-      />
+    <div className="card-prop new-pr max-w-[400px] mx-auto bg-white border rounded-lg shadow  border-[#fe598d] relative overflow-hidden">
+      <div className="h-[300px] w-full">
+        <img
+          className="rounded-t-lg w-full"
+          src={property?.mainPhoto}
+          alt=""
+          onClick={gotoProp}
+        />
+      </div>
       <div className="price-fav-cont absolute top-3 flex justify-between w-full p-2">
         <div className="price-tag bg-[#fe598d] text-[#fff] rounded px-2">
           {"$95"}
         </div>
-        {/* <div
-          className="fav-bx w-6 h-6  flex justify-center items-center text-[#fe598d] "
-          onClick={handleIsAct}
-        >
-          {isAct ? (
-            <MdFavorite />
-          ) : (
-            <MdFavoriteBorder onClick={handleFormSubmit} />
-          )}
-        </div> */}
       </div>
       <div className="p-2">
         <Link to={`/propdetint?id=${property.id}`}>

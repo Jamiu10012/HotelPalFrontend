@@ -3,16 +3,19 @@ import CardCol from "../components/CardCol";
 import RealDetail from "../components/RealDetail";
 import TopDetail from "../components/TopDetail";
 import { getPropById, getPropertiesRelated } from "../../Apis/ListProp";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import SkeletonBig from "../components/SkeletonBig";
 import Skeleton from "../components/Skeleton";
 import CardColRow from "../components/CardColRow";
 
 const PropDetail = () => {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const propId = searchParams.get("id");
   const [getData, setGetData] = useState(null);
   const [propertyData, setPropertyData] = useState(null);
+  const property = location.state;
+  console.log({ property });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,19 +52,19 @@ const PropDetail = () => {
   const combinedImages = [getData.cover_image, ...getData.rest_images];
 
   return (
-    <div className="detail-prop-container bg-[#f37db415]">
-      <TopDetail combinedImages={combinedImages} />
-      <RealDetail getData={getData} />
+    <div className="detail-prop-container bg-[#F6F7EB]">
+      <TopDetail combinedImages={property?.rest_images} />
+      <RealDetail getData={property} />
 
-      <div className="card-box-all mt-10 p-10 px-20">
-        <div className="text-3xl font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">
+      <div className="max-w-6xl mx-auto py-16 px-4">
+        <div className="text-4xl font-semibold text-[#000] mb-6 text-center">
           Related Properties
         </div>
         {/* Add your related properties rendering logic here */}
-        <div className="space-y-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
           {propertyData !== null
             ? propertyData?.map((property) => (
-                <CardColRow key={property._id} property={property} />
+                <CardCol key={property._id} property={property} />
               ))
             : [1, 2, 3].map((_, id) => <Skeleton key={id} />)}
         </div>

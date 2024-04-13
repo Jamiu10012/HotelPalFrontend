@@ -11,8 +11,10 @@ import { API_URL } from "../../ProtectedRoute";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { storeUser } from "../Store/userReducer";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
@@ -39,6 +41,7 @@ function LoginPage() {
       const timeoutId = setTimeout(() => {
         window.location.href = "/";
       }, 3500);
+      navigate;
       return () => clearTimeout(timeoutId);
     } catch (error) {
       toast.error(error.message);

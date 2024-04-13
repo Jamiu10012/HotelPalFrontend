@@ -14,10 +14,10 @@ import "react-toastify/dist/ReactToastify.css";
 const Calendar = ({ value, setValue, handleDateChange, booked }) => {
   const [highlightedDays, setHighlightedDays] = useState([]);
 
-  const firstFrom = booked.length >= 0 ? booked[0].from : null;
+  const firstFrom = booked.length >= 0 ? booked[0]?.from : null;
 
   // Get the 'to' value of the last object
-  const lastTo = booked.length >= 0 ? booked[booked.length - 1].to : null;
+  const lastTo = booked.length >= 0 ? booked[booked.length - 1]?.to : null;
 
   const startDate = new Date(firstFrom);
   const endDate = new Date(lastTo);

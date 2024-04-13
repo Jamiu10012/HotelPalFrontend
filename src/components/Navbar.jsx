@@ -32,10 +32,10 @@ function Navbar() {
     setIsMenu(false);
   };
   return (
-    <header className="min-h-[57px] w-full bg-white border-b sticky top-0 flex justify-between items-center p-2 z-[100]">
+    <header className="min-h-[57px] w-full sticky bg-white shadow-md top-0 flex justify-between items-center p-2 z-[100]">
       <nav className="w-[90%] m-auto flex justify-between items-center">
         <Link to={"/"} className="logo flex items-center">
-          <img src="/images/EzClickLogo1.png" className="w-[150px]" />
+          <img src="/images/EzClickLogo1.png" className="h-12" />
         </Link>
 
         <ul
@@ -47,19 +47,29 @@ function Navbar() {
             <IoIosCloseCircleOutline />
           </div>
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} onClick={handleIsMenuClose}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to={"/properties"}>Properties</Link>
+            <Link to={"/properties"} onClick={handleIsMenuClose}>
+              Properties
+            </Link>
+          </li>
+          {/* <li>
+            <Link to={"/listp"} onClick={handleIsMenuClose}>
+              List a place
+            </Link>
+          </li> */}
+          <li>
+            <Link to={"/contact"} onClick={handleIsMenuClose}>
+              Contact
+            </Link>
           </li>
           <li>
-            <Link to={"/listp"}>List a place</Link>
-          </li>
-          <li>
-            <Link to={"/contact"}>Contact</Link>
-          </li>
-          <li>
-            <Link to={"/all-blog"}>Blog</Link>
+            <Link to={"/all-blog"} onClick={handleIsMenuClose}>
+              Blog
+            </Link>
           </li>
         </ul>
         {/* <MenuModal /> */}

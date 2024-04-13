@@ -7,6 +7,8 @@ import { useSearchParams } from "react-router-dom";
 import Skeleton from "../components/Skeleton";
 import CardColInter from "../components/CardColInter";
 import CardColRow from "../components/CardColRow";
+import propHero from "../assets/images/properties.jpg";
+
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
   const [propertyInterData, setPropertyInterData] = useState(null);
@@ -114,25 +116,21 @@ const Properties = () => {
   // }
   return (
     <div className="]">
-      <div className='hero-section relative h-[50vh] after:content-[" "] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-r after:from-[rgba(255,251,246,0.8)] after:to-transparent flex w-full overflow-hidden mb-5 pt-2 '>
-        <div className="h-full w-full relativeimage-container">
-          <div className="absolute bg-[] top-0 h-full w-full"></div>
-          <img
-            src="/images/hero-slide-01.webp"
-            alt={``}
-            className="w-full h-full object-fill"
-          />
+      <div className="h-[300px] md:h-[400px] relative flex justify-center items-center overflow-hidden">
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            background: `url(${propHero}) center`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="absolute top-0 h-full w-full bg-[#fff] opacity-40"></div>
         </div>
-        <div className="hero-text absolute top-0 left-4 md:left-12 w-full md:w-[100%] lg:w-[100%] flex justify-center items-center flex-col h-full z-10 text-container">
-          <div className="text-box relative w-full   md:p-8 ">
-            <h1 className="text-3xl  md:text-4xl lg:text-4xl font-bold leading-7  md:leading-9 lg:leading-40  lihe text-center text-[#000]">
-              PROPERTIES
-            </h1>
-          </div>
-        </div>
+        <h1 className="relative z-20 text-4xl font-bold">PROPERTIES</h1>
       </div>
-      <div className="container mx-auto px-4 lg:px-0 pb-16">
-        <div className="grid lg:grid-cols-4 gap-4">
+      <div className="max-w-6xl mx-auto px-4 lg:px-0 pb-16 mt-12">
+        <div className="grid lg:grid-cols-4 gap-8">
           <div className="">
             <PropertyFilter
               locationText={locationText}
@@ -158,13 +156,13 @@ const Properties = () => {
             />
           </div>
 
-          <div className="md:col-span-3 space-y-4">
+          <div className="md:col-span-3 grid md:grid-cols-2 gap-8">
             {propertyInterData?.map((property) => (
               <CardColInter key={property._id} property={property} />
             ))}
             {filteredProperties?.length > 0
               ? filteredProperties?.map((property) => (
-                  <CardColRow key={property._id} property={property} />
+                  <CardCol key={property._id} property={property} />
                 ))
               : [1, 2, 3, 4, 5, 6].map((_, id) => <Skeleton key={id} />)}
           </div>

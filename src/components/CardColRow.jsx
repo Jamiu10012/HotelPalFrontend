@@ -57,12 +57,14 @@ const CardColRow = ({ property }) => {
         </div>
       </div>
       <div className="md:flex gap-4">
-        <img
-          className="rounded-lg h-[300px]"
-          src={property.cover_image}
-          alt=""
-          onClick={gotoProp}
-        />
+        <div>
+          <img
+            className="rounded-lg"
+            src={property.cover_image}
+            alt=""
+            onClick={gotoProp}
+          />
+        </div>
         <div className="">
           <Link
             to={`/propdet?id=${property._id}`}
@@ -87,11 +89,15 @@ const CardColRow = ({ property }) => {
               </div>
             </div>
             <div className="hidden md:block">
-              <p className="text-sm text-gray-400 mt-4 mb-2">This space includes</p>
+              <p className="text-sm text-gray-400 mt-4 mb-2">
+                This space includes
+              </p>
               <ul className="grid lg:grid-cols-2 gap-x-4 gap-y-2 list-disc text-xs lg:text-sm">
                 <li className="c list-disc ml-4">Queen bed</li>
                 <li className="c list-disc ml-4">Dishwasher</li>
-                <li className="c list-disc ml-4">Wheelchair access available</li>
+                <li className="c list-disc ml-4">
+                  Wheelchair access available
+                </li>
                 <li className="c list-disc ml-4">Microwave</li>
                 <li className="c list-disc ml-4">Air conditioning</li>
               </ul>

@@ -253,10 +253,10 @@ const ImageForm = ({
             ))}
           </div>
 
-          <div className="new-bx flex justify-end px-[100px]">
+          <div className="new-bx flex justify-center px-[100px]">
             <label
               htmlFor="imageUpload"
-              className="new-add bg-[#fe598d] w-[150px] h-[40px] rounded flex items-center justify-center text-[#fff] text-[20px] cursor-pointer"
+              className="bg-[#fe598d] whitespace-nowrap px-6 h-[40px] rounded flex items-center justify-center text-[#fff] text-[20px] cursor-pointer"
             >
               <MdOutlineAdd /> Add More
             </label>
