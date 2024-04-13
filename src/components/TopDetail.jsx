@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const TopDetail = ({ combinedImages }) => {
+const TopDetail = ({ combinedImages, children }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [image, setImage] = useState(combinedImages[0]);
 
@@ -30,11 +30,15 @@ const TopDetail = ({ combinedImages }) => {
   }, [nextImage]);
 
   return (
-    <div className="relative">
-      <div className="h-[400px] overflow-hidden">
-        <img src={image} alt="" className="object-cover h-[400px] w-auto md:w-full md:h-auto object-center -mt-20" />
+    <div className="relative overflow-hidden h-[400px]">
+      <div className="absolute inset-0 overflow-hidden">
+        <img
+          src={image}
+          alt=""
+          className="object-cover h-full w-full object-center"
+        />
       </div>
-      <div className="control-pre-next flex justify-between p-10 absolute top-[40%] w-full lg:hidden">
+      <div className="control-pre-next flex justify-between p-10 absolute z-40 top-[40%] w-full">
         <div
           className="cursor-pointer ctrl-delt w-[30px] h-[30px] bg-[#f399b698] rounded-full text-[#fff] flex justify-center items-center"
           onClick={prevImage}
@@ -48,6 +52,7 @@ const TopDetail = ({ combinedImages }) => {
           <FaChevronRight />
         </div>
       </div>
+      <div className="absolute inset-0 h-[400px] overflow-hidden">{children}</div>
     </div>
   );
 };

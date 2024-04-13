@@ -8,6 +8,8 @@ import Skeleton from "../components/Skeleton";
 import CardColInter from "../components/CardColInter";
 import CardColRow from "../components/CardColRow";
 import propHero from "../assets/images/properties.jpg";
+import propHero2 from "../assets/images/blog_header2.jpeg";
+import TopDetail from "../components/TopDetail";
 
 const Properties = () => {
   const [propertyData, setPropertyData] = useState(null);
@@ -115,8 +117,8 @@ const Properties = () => {
   //   );
   // }
   return (
-    <div className="]">
-      <div className="h-[300px] md:h-[400px] relative flex justify-center items-center overflow-hidden">
+    <div className="bg-[#F6F7EB]">
+      {/* <div className="h-[300px] md:h-[400px] relative flex justify-center items-center overflow-hidden">
         <div
           className="absolute inset-0 overflow-hidden"
           style={{
@@ -128,7 +130,16 @@ const Properties = () => {
           <div className="absolute top-0 h-full w-full bg-[#fff] opacity-40"></div>
         </div>
         <h1 className="relative z-20 text-4xl font-bold">PROPERTIES</h1>
-      </div>
+      </div> */}
+      <TopDetail
+        combinedImages={[propHero, propHero2]}
+        children={
+          <div className="h-full flex items-center justify-center">
+            <div className="absolute inset-0 bg-black opacity-20"></div>
+            <h1 className="relative z-20 text-4xl font-bold text-white">PROPERTIES</h1>
+          </div>
+        }
+      />
       <div className="max-w-6xl mx-auto px-4 lg:px-0 pb-16 mt-12">
         <div className="grid lg:grid-cols-4 gap-8">
           <div className="">

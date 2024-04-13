@@ -19,10 +19,6 @@
   box-sizing: border-box;
   /* overflow-x: hidden; */
 }
-input[type="email"],
-input[type="password"] {
-  @apply w-full border my-4 py-2 px-3 text-[18px] rounded-md;
-}
 ul,
 li,
 ol {

@@ -1,67 +1,148 @@
+import { FaSearch } from "react-icons/fa";
 import BlogCard from "../components/BlogCard";
+import LatestPost from "../components/latestPost";
 
 const BlogDetail = () => {
   return (
-    <div className="blog-detail-container p-20 px-40">
-      <h1 className="blog-title font-bold text-[40px] text-center">
-        What is happening today
-      </h1>
-      <div className="image-bx">
-        <img
-          src="/images/hero-slide-03.webp"
-          alt=""
-          className="rounded-[20px] my-10"
-        />
-      </div>
-      <div className="body-text text-[20px]">
-        <h1 className="text-[28px] text-[#4e4d4d] font-bold ml-5 mb-5">
-          Offering a Full Welcoming Space
-        </h1>
-        <div className="date-txt text-[#4e4d4d]  ml-5 mb-10">
-          Published on April 21, 2015 by admin{" "}
+    <div className="max-w-6xl mx-auto px-4 bg-[#F6F7EB]">
+      <div className="grid md:grid-cols-3 gap-4 lg:gap-8">
+        <div className="md:col-span-2">
+          <div className="border rounded bg-white">
+            <div className="w-full overflow-hidden h-[350px]">
+              <img
+                className="h-full w-auto object-cover object-center"
+                src="/images/hero-slide-01.webp"
+                alt=""
+              />
+            </div>
+            <article className="p-8">
+              <h1 className="text-xl md:text-2xl font-semibold">
+                Different between Dorm and Cabin
+              </h1>
+              <div className="space-y-8 mt-4">
+                <p className="text-sm font-light">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                  accusamus nostrum, maxime, aliquam labore ad nihil,
+                  perspiciatis asperiores facilis animi rerum consequuntur
+                  fugiat voluptatem obcaecati!
+                </p>
+                <p className="text-sm font-light">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                  accusamus nostrum, maxime, aliquam labore ad nihil,
+                  perspiciatis asperiores facilis animi rerum consequuntur
+                  fugiat voluptatem obcaecati!
+                </p>
+                <p className="text-sm font-light">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                  accusamus nostrum, maxime, aliquam labore ad nihil,
+                  perspiciatis asperiores facilis animi rerum consequuntur
+                  fugiat voluptatem obcaecati!
+                </p>
+              </div>
+            </article>
+            <div className="p-8">
+              <div className="flex">
+                <p className="text-[#79745C]">
+                  <span className="font-bold">Category: </span>
+                  <span className="hover:text-[#3F88C5] cursor-pointer hover:underline">
+                    Holiday Ideas,{" "}
+                  </span>
+                  <span className="hover:text-[#3F88C5] cursor-pointer hover:underline">
+                    Hospitality
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="py-20">
+            <div className="text-2xl font-medium text-[#000] mb-6">
+              Related Posts
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <BlogCard />
+            </div>{" "}
+          </div>
+          <div className="pb-20">
+            <div>
+              <h1 className="text-xl font-medium">Leave a Reply</h1>
+              <p className="text-sm mb-6">Your email address will not be published.</p>
+            </div>
+            <form className="space-y-4">
+              <div className="flex flex-col">
+                <textarea
+                  className="w-full bg-transparent border bg-white rounded-md p-4"
+                  id=""
+                  rows="6"
+                  placeholder="Comment"
+                ></textarea>
+              </div>
+              <div className="flex flex-wrap lg:flex-nowrap gap-4">
+                <div className="flex flex-col">
+                  <input
+                    type="text"
+                    className="w-full bg-transparent border bg-white rounded-md px-4 h-10 m-0 placeholder:text-sm"
+                    id=""
+                    placeholder="Name"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <input
+                    type="email"
+                    className="w-full bg-transparent border bg-white rounded-md px-4 h-10 m-0 placeholder:text-sm"
+                    id=""
+                    placeholder="Enter your email address"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <input
+                    type="email"
+                    className="w-full bg-transparent border bg-white rounded-md px-4 h-10 m-0 placeholder:text-sm"
+                    id=""
+                    placeholder="Enter your email address"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="inline-flex justify-center items-center cursor-pointer px-3 py-2 text-sm font-medium text-center text-white bg-[#fe598d] rounded-lg hover:bg-[#fff] hover:border hover:border-[#fe598d] hover:text-[#fe598d]  w-[150px] "
+              >
+                Send
+              </button>
+            </form>
+          </div>
         </div>
-        Exceptional hospitality can come through in a lot of ways, but it most
-        definitely starts with a clean space. And while cleaning might not be
-        the most fun part of hosting, it doesn’t have to be difficult! Here are
-        a few tips and tricks to help you get swept up in an effective and easy
-        cleaning routine.
-        <h2 className="font-bold my-10 text-[#4e4d4d]">
-          Focus on the trouble spots First things first:
-        </h2>
-        Give extra attention to the most important areas of cleanliness. Those
-        would be the kitchen and the bathrooms. If you offer your guests space
-        in the refrigerator, give it a thorough cleaning. And if you make a
-        point to keep all of the condiments and other items nicely organized,
-        your guest will be encouraged do the same.{" "}
-        <h2 className="font-bold my-10 text-[#4e4d4d]">
-          Make room for your guests
-        </h2>
-        things We certainly love our tchotchkes, but too much of a good thing
-        may look like clutter to a visitor. In addition to keeping your space
-        clean, it’s important to keep it tidy. Your guests may not want to live
-        out of their suitcase for their whole stay, so you can offer them space
-        to put out their toiletries and personal items on a shelf or nightstand.
-        You can also offer your guests room for their clothes and larger items
-        in a closet or dresser.{" "}
-        <h2 className="font-bold my-10 text-[#4e4d4d]">
-          Pay attention to details
-        </h2>{" "}
-        Once you’ve gotten your space clean and ready for your next guest, check
-        the details: Look for stray hairs on the couch Clean off dust on the
-        edges of shelves, picture frames, and doorways Wipe down all the
-        surfaces of fixtures and appliances Check the kitchen counter for crumbs
-        Sweep or vacuum under the furniture
-      </div>
-      <div className="py-20">
-        <div className="text-[25px] font-[700] text-[#000] mb-6 text-center border-y-2 border-y-[#fe598d]">
-          Related Blog
+        <div>
+          <div className="space-y-4 py-4">
+            {/* <div className="flex items-center h-12 border rounded pl-5 justify-between  border-[#fe598d] mb-10">
+                <input
+                  type="text"
+                  placeholder="Seearch here"
+                  className="outline-none bg-transparent w-full"
+                />
+                <FaSearch className=" text-[#fff] bg-[#fe598d] w-[80px] h-full p-1 cursor-pointer" />
+              </div> */}
+            <div className="bg-white p-8 rounded-md border border-[#7c79664b]">
+              <div className="flex items-center gap-3">
+                <p className="text-lg">Categories</p>
+              </div>
+              <div className="mt-6 flex items-center gap-2">
+                <p>Travel</p>
+                <span className="font-medium">(0) </span>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-md border border-[#7c79664b]">
+              <div className="flex items-center gap-3">
+                <p className="text-lg">Latest Post</p>
+              </div>
+              <LatestPost />
+              <LatestPost />
+              <LatestPost />
+              <LatestPost />
+              <LatestPost />
+            </div>
+          </div>
         </div>
-        <div className="py-10 w-full flex justify-between flex-wrap gap-5 ">
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-        </div>{" "}
       </div>
     </div>
   );

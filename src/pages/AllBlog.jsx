@@ -1,69 +1,79 @@
 import { FaSearch } from "react-icons/fa";
 import BlogCard from "../components/BlogCard";
 import "../assets/css/blog.css";
+import BookFormMain from "../components/BookFormMain";
+import hero from "../assets/images/blog_header2.jpeg";
+import LatestPost from "../components/latestPost";
 const AllBlog = () => {
   return (
-    <div clasName=" ">
-      <div className="flex justify-end px-20 py-10 all-blog-container">
-        <div className="search-blog-box w-[500px] flex items-center h-[40px] border rounded pl-5 justify-between  border-[#fe598d] mb-10">
-          <input
-            type="text"
-            placeholder="Seearch here"
-            className="w-[90%] outline-none"
-          />
-          <FaSearch className=" text-[#fff] bg-[#fe598d] w-[80px] h-full p-1 cursor-pointer" />
+    <div className=" bg-[#F6F7EB] pb-20">
+      <div
+        className="h-[450px] relative p-8 flex justify-center items-center"
+        style={{
+          background: `url(${hero}) center center no-repeat`,
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="absolute inset-0 bg-[#1c1919] opacity-30 0 z-10"></div>
+        <div className="text-center text-white relative z-20">
+          <p className="text-lg">
+            Planning a vacation in the near future? Read our blog
+          </p>
         </div>
       </div>
-      <div className="blog-row px-20 all-blog-container mb-20">
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
+      <div className="max-w-6xl mx-auto px-4">
+        <p className="text-xs font-bold py-4">
+          <span className="x hover:text-primary_pink text-[#79745C]">
+            Home /{" "}
+          </span>
+          All Blog
+        </p>
+        <h1 className="text-[#272932] font-bold text-2xl mb-4">Blog Posts</h1>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 grid md:grid-cols-2 gap-4">
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+          </div>
+          <div>
+            <div className="space-y-4">
+              <div className="flex items-center h-12 border rounded pl-5 justify-between  border-[#fe598d] mb-10">
+                <input
+                  type="text"
+                  placeholder="Seearch here"
+                  className="outline-none bg-transparent w-full"
+                />
+                <FaSearch className=" text-[#fff] bg-[#fe598d] w-[80px] h-full p-1 cursor-pointer" />
+              </div>
+              <div className="bg-white p-8 rounded-md border border-[#7c79664b]">
+                <div className="flex items-center gap-3">
+                  <p className="text-lg">Categories</p>
+                </div>
+                <div className="mt-6 flex items-center gap-2">
+                  <p>Travel</p>
+                  <span className="font-medium">(0) </span>
+                </div>
+              </div>
+              <div className="bg-white p-8 rounded-md border border-[#7c79664b]">
+                <div className="flex items-center gap-3">
+                  <p className="text-lg">Latest Post</p>
+                </div>
+                <LatestPost />
+                <LatestPost />
+                <LatestPost />
+                <LatestPost />
+                <LatestPost />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* <div className="flex">
-        <div className="flex items-center justify-center px-4 h-10 me-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-          <svg
-            className="w-3.5 h-3.5 me-2 rtl:rotate-180"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 5H1m0 0 4 4M1 5l4-4"
-            />
-          </svg>
-          Previous
-        </div>
-        <div className="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-          Next
-          <svg
-            className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </div>
-      </div> */}
     </div>
   );
 };

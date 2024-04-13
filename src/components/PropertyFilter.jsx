@@ -103,7 +103,7 @@ const PropertyFilter = ({
         <IoLocation className="main_icon" />
         <input
           type="text"
-          className="loc-inp outline-none w-[90%]"
+          className="loc-inp outline-none w-[90%] bg-transparent placeholder:text-sm"
           placeholder="Where are you going"
           value={locationText}
           onChange={(e) => setLocationText(e.target.value)}
@@ -210,7 +210,7 @@ const PropertyFilter = ({
       <div className="price-range-box flex">
         <input
           type="text"
-          className="prc-ran-inp outline-none px-2"
+          className="prc-ran-inp outline-none px-2 bg-transparent"
           placeholder="From: $0"
           value={priceFrom}
           onChange={(e) => setpriceFrom(e.target.value)}
@@ -218,7 +218,7 @@ const PropertyFilter = ({
         <div className="icon-prop">-</div>
         <input
           type="text"
-          className="prc-ran-inp outline-none px-2"
+          className="prc-ran-inp outline-none px-2 bg-transparent"
           placeholder="To: $600"
           value={priceTo}
           onChange={(e) => setpriceTo(e.target.value)}

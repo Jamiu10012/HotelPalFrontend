@@ -31,23 +31,28 @@ const BlogCard = () => {
       {data.map((item, index) => (
         <div
           key={index}
-          className="card-blog-box flex flex-row items-center w-[48%] h-[300px] bg-[#5f4c76] border border-[#5f4c76] rounded-lg shadow "
+          className="items-center rounded-lg shadow-md max-w-md mx-auto bg-white"
         >
-          <img
-            className="im-blog object-cover rounded-t-lg h-[100%] w-[48%] md:rounded-none md:rounded-s-lg"
-            src="/images/hero-slide-01.webp"
-            alt=""
-          />
+          <div className="h-52 overflow-hidden">
+            <img
+              className="object-cover rounded-t-lg h-full object-center"
+              src="/images/hero-slide-01.webp"
+              alt=""
+            />
+          </div>
           <div className="flex flex-col justify-between p-4 leading-normal">
             <Link to={"/blog-det"}>
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-white txt-head">
+              <h5 className="mb-2 text-xl font-medium tracking-tight hover:text-[#3F88C5] txt-head">
                 {item.title}
               </h5>
             </Link>
-            <p className="mb-3 font-normal text-gray-200">{item.bdy}</p>
-            <div className="tim mt-10 flex justify-end text-white items-center gap-1 ">
-              <IoMdTime className="text-[20px]" />
-              {item.time}
+            <p className="mb-3 font-light text-sm">{item.bdy}</p>
+            <div className="flex items-center gap-1 text-xs text-[#79745C]">
+              April 21, 2015 ,{" "}
+              <span>
+                <IoMdTime className="text-[20px]" />
+              </span>{" "}
+              0
             </div>
           </div>
         </div>
