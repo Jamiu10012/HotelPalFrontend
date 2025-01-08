@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { API_URL } from "../../ProtectedRoute";
+
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,9 +29,9 @@ function ForgotPassword() {
 
   return (
     <div className="log-box w-[450px] border border-gray-500 relative mx-auto my-[5rem] p-6 grow flex flex-col items-center">
-      <h2 className="text-4xl text-center">Forgot Password</h2>
+      <h2 className="text-4xl text-center mb-2">Forgot Password</h2>
       <form className="flex flex-col w-full" onSubmit={handleFormSubmit}>
-        <label htmlFor="email" className="flex flex-col">
+        <label htmlFor="email" className="flex flex-col mb-2 border p-2">
           <input
             type="email"
             name="email"

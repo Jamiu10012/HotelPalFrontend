@@ -9,7 +9,7 @@ const VerifySucc = () => {
   }, []); // Empty dependency array ensures this effect runs only once
 
   return (
-    <div className="verify-container">
+    <div className="verify-container my-36">
       <img src={very} alt="" />
       <span>
         Verified successfull!!! You will be redirect in less than 4 seconds

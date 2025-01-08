@@ -1,6 +1,4 @@
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { API_URL } from "../../ProtectedRoute";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -86,7 +84,7 @@ function ResetPassword() {
     <div className="log-box w-[450px] border border-gray-500 relative mx-auto my-[5rem] p-6 grow flex flex-col items-center">
       <h2 className="text-4xl text-center">Reset Password</h2>
       <form className="flex flex-col w-full" onSubmit={handleFormSubmit}>
-        <label htmlFor="newPassword" className="flex flex-col">
+        <label htmlFor="newPassword" className="flex flex-col border p-2">
           <input
             type="password"
             name="newPassword"
@@ -96,13 +94,16 @@ function ResetPassword() {
             onChange={handleInputChange}
             required
           />
-          <span className="text-[10px] mt-[-10px] text-red-400">
+          <span className="text-[10px] mt-[10px] text-red-400 mb-3">
             * Password must be at least 8 characters and contain at least one
             letter, one number, and one special character
           </span>
         </label>
 
-        <label htmlFor="confirmPassword" className="flex flex-col">
+        <label
+          htmlFor="confirmPassword"
+          className="flex flex-col mb-2 border p-2"
+        >
           <input
             type="password"
             name="confirmPassword" // Corrected the name here

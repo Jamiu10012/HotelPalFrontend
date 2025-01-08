@@ -1,5 +1,6 @@
 // import EzClickLogo2 from "../assets/images/EzClickLogo2.png";
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="bg-[#272932] ">
       <div className="mx-auto w-full p-4 py-6 lg:py-8">
@@ -41,7 +42,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-[#fff] sm:text-center ">
-            © 2023 HotelPal . All Rights Reserved.
+            © {currentYear} HotelPal . All Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a href="#" className="text-[#fff] hover dark:hover:text-white">
