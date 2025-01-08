@@ -1,5 +1,4 @@
 // api.js
-import { useState } from "react";
 import { API_URL } from "../ProtectedRoute";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,8 +13,8 @@ export const registerUser = async (userData, successMessage) => {
       body: JSON.stringify(userData),
     });
     if (!response.ok) {
-      const errorData = await response.json(); // Assuming the server sends error details in JSON format
-      throw new Error(errorData.message); // Adjust this based on the actual structure of the error response
+      const errorData = await response.json();
+      throw new Error(errorData.message);
     }
 
     const data = await response.json();
