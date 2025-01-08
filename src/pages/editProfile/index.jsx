@@ -9,8 +9,6 @@ function EditProfile() {
       <div className="edit-container">
         <Sidebar />
         <EditDashboard />
-
-        {/* {dashboardActive && } */}
       </div>
     </Fragment>
   );
