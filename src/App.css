@@ -10,6 +10,9 @@ body {
 .menu-v {
   display: none;
 }
+.logo{
+  color: rgb(241, 115, 136);
+}
 .csd {
   width: 100px;
   height: 100px;

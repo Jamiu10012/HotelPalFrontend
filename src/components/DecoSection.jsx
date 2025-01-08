@@ -1,4 +1,3 @@
-import { IoLocation } from "react-icons/io5";
 import "../assets/css/homePage.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -78,7 +77,7 @@ function DecoSection() {
             </p>
             <div className="about-btn-box flex gap-5 my-8">
               <button
-                className="about-btn w-[120px] hover:bg-[#fff] hover:text-[#fe598d] bg-[#fe598d] rounded text-[#fff] h-[35px]"
+                className="about-btn w-[140px] hover:bg-[#fff] hover:text-[#fe598d] bg-[#fe598d] rounded text-[#fff] h-[35px]"
                 onClick={gotoSign}
               >
                 Become a host

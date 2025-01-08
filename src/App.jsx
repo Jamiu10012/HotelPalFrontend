@@ -3,7 +3,6 @@ import HomePage from "./pages/HomePage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import Layout from "./Layout";
 import ContactUs from "./pages/ContactUs";
 import Properties from "./pages/Properties";
 import PropDetail from "./pages/PropDetail";

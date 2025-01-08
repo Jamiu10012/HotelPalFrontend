@@ -1,5 +1,4 @@
 import { signInWithPopup } from "firebase/auth";
-import FacebookLogo from "../assets/images/FacebookLogo";
 import GoogleLogo from "../assets/images/GoogleLogo";
 import { Link } from "react-router-dom";
 import { auth, provider } from "../firebase";
@@ -77,13 +76,15 @@ function SignupPage() {
             console.log(res);
           });
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <div className="log-box w-[450px] border border-gray-500 relative mx-auto my-[5rem] p-6 grow flex flex-col items-center">
-      <h2 className="text-4xl text-center">Sign up</h2>
+      <h2 className="text-4xl text-center mb-5">Sign up</h2>
       <form className="flex flex-col w-full" onSubmit={handleFormSubmit}>
-        <label htmlFor="email" className="flex flex-col">
+        <label htmlFor="email" className="flex flex-col mb-2 border p-2">
           <input
             type="email"
             name="email"
@@ -93,7 +94,7 @@ function SignupPage() {
             onChange={handleInputChange}
           />
         </label>
-        <label htmlFor="password" className="flex flex-col">
+        <label htmlFor="password" className="flex flex-col  border p-2">
           <input
             type="password"
             name="password"
@@ -102,12 +103,15 @@ function SignupPage() {
             value={formData.password}
             onChange={handleInputChange}
           />
-          <span className="text-[10px] mt-[-10px] text-red-400">
-            * Password must be at least 8 characters and contain at least one
-            letter, one number, and one special character
-          </span>
         </label>
-        <label htmlFor="confirmPassword" className="flex flex-col">
+        <span className="text-[10px] mt-[10px] text-red-400 mb-3">
+          * Password must be at least 8 characters and contain at least one
+          letter, one number, and one special character
+        </span>
+        <label
+          htmlFor="confirmPassword"
+          className="flex flex-col mb-2 border p-2"
+        >
           <input
             type="password"
             name="confirmPassword" // Corrected the name here

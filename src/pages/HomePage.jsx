@@ -4,7 +4,6 @@ import BookingForm from "../components/BookingForm";
 import HomeCard from "../components/HomeCard";
 import AboutUs from "../components/AboutUs";
 import DecoSection from "../components/DecoSection";
-import BlogCard from "../components/BlogCard";
 // import Cities from "../components/Cities";
 import Testimonies from "../components/Testimonies";
 import HeroVideo from "../components/HeroVideo";

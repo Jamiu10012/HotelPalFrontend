@@ -16,11 +16,9 @@ const AboutUs = () => {
         <img src={ab} alt="" className="rounded-lg" />
       </div>
       <div className="self-center">
-        <div className="text-4xl font-bold text-gray-700">
-          ABOUT EZ CLICK STAY
-        </div>
+        <div className="text-4xl font-bold text-gray-700">ABOUT HotelPal</div>
         <div className="about-body mt-7 text-gray-700">
-          EZ CLICK STAY is committed to delivering a high level of expertise,
+          HotelPal is committed to delivering a high level of expertise,
           customer service, and attention to detail to the market of
           accommodation booking .
         </div>

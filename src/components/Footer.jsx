@@ -1,15 +1,15 @@
-import EzClickLogo2 from "../assets/images/EzClickLogo2.png";
+// import EzClickLogo2 from "../assets/images/EzClickLogo2.png";
 const Footer = () => {
   return (
     <footer className="bg-[#272932] ">
       <div className="mx-auto w-full p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0 w-full">
-            <img src={EzClickLogo2} className="h-12 me-3 w-[100px]" alt="" />
+            {/* <img src={EzClickLogo2} className="h-12 me-3 w-[100px]" alt="" /> */}
             <p className="text-[#fff] w-[80%] mt-5">
-              EZ CLICK STAY is committed to delivering a high level of
-              expertise, customer service, and attention to detail to the market
-              of accommodation booking .
+              HotelPal is committed to delivering a high level of expertise,
+              customer service, and attention to detail to the market of
+              accommodation booking .
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -29,7 +29,7 @@ const Footer = () => {
               </h2>
               <ul className="text-[#fff]  ">
                 <li className="mb-2">(407)409-4516</li>
-                <li className="mb-2">info@ezclickstay.com</li>
+                <li className="mb-2">info@hotelpal.com</li>
                 <li>
                   {" "}
                   <address>8240 Exchange Dr. Ste G-4 </address>
@@ -41,7 +41,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-[#fff] sm:text-center ">
-            © 2023 EZClickStay . All Rights Reserved.
+            © 2023 HotelPal . All Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a href="#" className="text-[#fff] hover dark:hover:text-white">

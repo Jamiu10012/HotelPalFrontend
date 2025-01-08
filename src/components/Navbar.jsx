@@ -34,8 +34,11 @@ function Navbar() {
   return (
     <header className="min-h-[57px] w-full sticky bg-white shadow-md top-0 flex justify-between items-center p-2 z-[100]">
       <nav className="w-[90%] m-auto flex justify-between items-center">
-        <Link to={"/"} className="logo flex items-center">
-          <img src="/images/EzClickLogo1.png" className="h-12" />
+        <Link
+          to={"/"}
+          className="logo flex items-center text-[20px] font-bold text-[primary_pink]"
+        >
+          HotelPal
         </Link>
 
         <ul
